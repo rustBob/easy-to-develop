@@ -22,15 +22,4 @@ public class UserController extends BaseController<User, UserDTO, UserVO, UserPa
         super("GlobalUserController", userService);
     }
 
-    /**
-     * 添加用户
-     * @param data 用户数据
-     * @return Result<UserVO>
-     * @throws AppException 自定义异常
-     */
-    @Override
-    @SaIgnore
-    public Result<String> post(UserDTO data) throws AppException {
-        return super.post(data);
-    }
 }

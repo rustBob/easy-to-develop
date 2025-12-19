@@ -1,8 +1,6 @@
 import store from '@/store/index.js'
 
 export const getToken = () => {
-  console.log('getToken', store.get('user'));
-
   return store.get('user')?.token || null;
 };
 
