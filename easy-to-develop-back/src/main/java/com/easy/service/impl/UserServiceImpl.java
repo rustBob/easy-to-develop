@@ -1,6 +1,7 @@
 package com.easy.service.impl;
 
 import cn.dev33.satoken.secure.SaSecureUtil;
+import cn.dev33.satoken.stp.StpUtil;
 import com.easy.common.Status;
 import com.easy.common.exception.AppException;
 import com.easy.config.SaTokenConfiguration;
@@ -12,12 +13,16 @@ import com.easy.mapper.UserMapper;
 import com.easy.service.UserService;
 import com.easy.util.AESKeyGenerator;
 import com.easy.util.SnowflakeDistributeIdUtil;
+import com.mybatisflex.core.paginate.Page;
 import com.mybatisflex.core.query.QueryWrapper;
 import jakarta.annotation.Resource;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -89,5 +94,26 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserDTO, UserVO, User
             // 2.加密
             userDTO.setPassword(SaSecureUtil.aesEncrypt(privateKey, userDTO.getPassword()));
         }
+    }
+
+    @Override
+    protected List<UserVO> afterGet(List<User> entities) throws AppException {
+        List<UserVO> vos = new ArrayList<>();
+        for(User e: entities){
+            UserVO vo = convertToVO(e);
+            vos.add(vo);
+        }
+        return vos;
+    }
+
+    @Override
+    protected Page<UserVO> afterList(Page<User> page) throws AppException {
+        List<UserVO> vos = convertToVO(page.getRecords());
+        for(UserVO vo: vos){
+            vo.setOnline(StpUtil.isLogin(vo.getId()) ? 1 : 0);
+        }
+        Page<UserVO> vosPage = new Page<>(page.getPageNumber(), page.getPageSize(), page.getTotalRow());
+        vosPage.setRecords(vos);
+        return vosPage;
     }
 }

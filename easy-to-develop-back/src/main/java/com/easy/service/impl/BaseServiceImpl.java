@@ -43,8 +43,7 @@ public class BaseServiceImpl<T, DTO, VO, PQDTO> implements BaseService<T, DTO, V
     public List<VO> get(DTO dto) throws AppException {
         beforeGet(dto);
         List<T> e = doGet(dto);
-        afterGet(e);
-        return convertToVO(e);
+        return afterGet(e);
     }
 
     /**
@@ -78,13 +77,13 @@ public class BaseServiceImpl<T, DTO, VO, PQDTO> implements BaseService<T, DTO, V
         return mapper.selectListWithRelationsByQuery(queryWrapper);
     }
 
-
     /**
      * 执行get后执行的方法
      * @param entities 实体集合
      * @throws AppException 自定义应用异常
      */
-    protected void afterGet(List<T> entities) throws AppException{
+    protected List<VO> afterGet(List<T> entities) throws AppException{
+        return convertToVO(entities);
     }
 
     /**
@@ -221,13 +220,7 @@ public class BaseServiceImpl<T, DTO, VO, PQDTO> implements BaseService<T, DTO, V
     public Page<VO> list(PQDTO query) throws AppException {
         beforeList(query);
         Page<T> page = doList(query);
-        afterList(page);
-
-        List<VO> vos = convertToVO(page.getRecords());
-        Page<VO> vosPage = new Page<>(page.getPageNumber(), page.getPageSize(), page.getTotalRow());
-        vosPage.setRecords(vos);
-
-        return vosPage;
+        return afterList(page);
     }
 
     /**
@@ -235,7 +228,7 @@ public class BaseServiceImpl<T, DTO, VO, PQDTO> implements BaseService<T, DTO, V
      * @param query 分页查询参数
      * @throws AppException 自定义应用异常
      */
-    private void beforeList(PQDTO query) throws AppException{
+    protected void beforeList(PQDTO query) throws AppException{
     }
 
     /**
@@ -243,7 +236,7 @@ public class BaseServiceImpl<T, DTO, VO, PQDTO> implements BaseService<T, DTO, V
      * @param query 分页查询参数
      * @return Page<T>
      */
-    private Page<T> doList(PQDTO query) throws AppException {
+    protected Page<T> doList(PQDTO query) throws AppException {
         Map<String, Object> pageQueries;
         try {
             pageQueries = AssembleParamsUtil.assembleParamsFromDTOClass(query, query.getClass());
@@ -270,7 +263,11 @@ public class BaseServiceImpl<T, DTO, VO, PQDTO> implements BaseService<T, DTO, V
      * 执行list方法后执行方法
      * @param page 分页对象
      */
-    private void afterList(Page<T> page) {
+    protected Page<VO> afterList(Page<T> page) throws AppException {
+        List<VO> vos = convertToVO(page.getRecords());
+        Page<VO> vosPage = new Page<>(page.getPageNumber(), page.getPageSize(), page.getTotalRow());
+        vosPage.setRecords(vos);
+        return vosPage;
     }
 
     /**

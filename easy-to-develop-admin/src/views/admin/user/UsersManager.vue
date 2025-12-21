@@ -74,6 +74,10 @@
         </el-form-item>
       </el-form>
     </template>
+
+    <template #rowAction="{ row }">
+      <el-dropdown-item @click="forceLogout(row)" v-if="row.online" >强制下线</el-dropdown-item>
+    </template>
   </Table>
 </template>
 
@@ -81,7 +85,7 @@
 import { globalApi } from '@/api/global';
 import Table from '@/components/TableComponent.vue'
 import { h, onMounted, ref } from 'vue'
-import { ElTag } from 'element-plus';
+import { ElNotification, ElTag, ElDialog } from 'element-plus';
 
 const roles = ref([])
 
@@ -134,19 +138,11 @@ const columns = [
     }
   },
   {
-    prop: 'createTime',
-    label: '创建时间',
+    prop: 'online',
+    label: '是否在线',
     align: 'center',
     formatter: (row) => {
-      return row.createTime.replace('T', ' ');
-    }
-  },
-  {
-    prop: 'updateTime',
-    label: '更新时间',
-    align: 'center',
-    formatter: (row) => {
-      return row.updateTime.replace('T', ' ');
+      return h('div', h(ElTag, { type: row.online ? 'success' : 'danger' }, () => row.online ? '在线' : '不在线'));
     }
   }
 ]
@@ -192,4 +188,31 @@ onMounted(() => {
     }))
   }, null)
 })
+
+const forceLogout = (row) => {
+  ElDialog.confirm({
+    title: '确认强制下线',
+    message: '确认强制下线用户 ' + row.username + ' 吗？',
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  }).then(() => {
+    globalApi['users'].forceLogout({ id: row.id }, (res) => {
+      if (res.code === 200) {
+        ElNotification.success({
+          title: '成功',
+          message: '强制下线成功'
+        });
+        row.online = 0;
+      } else {
+        ElNotification.error({
+          title: '失败',
+          message: res.msg || '强制下线失败'
+        });
+      }
+    }, null)
+  }).catch(() => {
+    // 取消操作
+  });
+}
 </script>

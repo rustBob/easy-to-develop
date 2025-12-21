@@ -44,6 +44,11 @@ public class UserVO implements Serializable {
     private Integer enabled;
 
     /**
+     * 是否在线
+     */
+    private Integer online;
+
+    /**
      * 逻辑删除
      */
     private Integer deleted;
