@@ -19,7 +19,7 @@ public class UserPageQueryDTO{
     /**
      * 角色id
      */
-    private String role_id;
+    private String roleId;
 
     /**
      * 主键id

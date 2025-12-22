@@ -48,10 +48,35 @@ public class AssembleParamsUtil {
             if(field.getName().equals(ClassPropertyAndMethodConst.PAGE_NUM) ||
                     field.getName().equals(ClassPropertyAndMethodConst.PAGE_SIZE)) continue;
 
+            // 将驼峰命名转换为下划线命名
+            String dbFieldName = camelToUnderline(field.getName());
             queryWrapper = field.getName().contains("name") && param != null ?
-                    queryWrapper.like(field.getName(), param + "%") :
-                    queryWrapper.eq(field.getName(), param);
+                    queryWrapper.like(dbFieldName, param + "%") :
+                    queryWrapper.eq(dbFieldName, param);
         }
         return queryWrapper;
+    }
+
+    /**
+     * 将驼峰命名转换为下划线命名
+     * @param camelName 驼峰命名的字符串
+     * @return 下划线命名的字符串
+     */
+    private static String camelToUnderline(String camelName) {
+        if (camelName == null || camelName.isEmpty()) {
+            return camelName;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(camelName.charAt(0));
+        for (int i = 1; i < camelName.length(); i++) {
+            char c = camelName.charAt(i);
+            if (Character.isUpperCase(c)) {
+                sb.append("_");
+                sb.append(Character.toLowerCase(c));
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
     }
 }

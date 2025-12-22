@@ -21,8 +21,8 @@ public class DrinksPageQueryDTO {
     private String name;
 
     /**
-     * 价格
+     * 种类
      */
-    private BigDecimal price;
+    private Integer categoryId;
 
 }
