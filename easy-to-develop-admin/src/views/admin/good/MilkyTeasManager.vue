@@ -1,0 +1,118 @@
+<template>
+  <Table
+    :data-driver="globalApi['drinks']"
+    :columns="columns"
+    :data-pk-names="['id']"
+    :add-rules="rules"
+    :update-rules="rules"
+  >
+    <template #addDialogForm="{ formRef, form, rules}">
+      <el-form :ref="formRef" :model="form" :rules="rules" label-width="120px">
+        <el-form-item label="商品名称" prop="name">
+          <el-input v-model="form.name" placeholder="请输入商品名称" />
+        </el-form-item>
+        <el-form-item label="商品图片" prop="image">
+          <el-input v-model="form.image" placeholder="请输入商品图片" />
+        </el-form-item>
+        <el-form-item label="商品价格" prop="price">
+          <el-input v-model="form.price" placeholder="请输入商品价格" />
+        </el-form-item>
+        <el-form-item label="商品描述" prop="description">
+          <el-input v-model="form.description" placeholder="请输入商品描述" />
+        </el-form-item>
+        <el-form-item label="商品分类" prop="categoryId">
+          <el-select v-model="form.categoryId" placeholder="请选择商品分类">
+            <el-option v-for="item in categories" :key="item.id" :label="item.name" :value="item.id" />
+          </el-select>
+        </el-form-item>
+      </el-form>
+    </template>
+
+    <template #updateDialogForm="{ formRef, form, rules}">
+      <el-form :ref="formRef" :model="form" :rules="rules" label-width="120px">
+        <el-form-item label="商品名称" prop="name">
+          <el-input v-model="form.name" placeholder="请输入商品名称" />
+        </el-form-item>
+        <el-form-item label="商品图片" prop="image">
+          <el-input v-model="form.image" placeholder="请输入商品图片" />
+        </el-form-item>
+        <el-form-item label="商品价格" prop="price">
+          <el-input v-model="form.price" placeholder="请输入商品价格" />
+        </el-form-item>
+        <el-form-item label="商品描述" prop="description">
+          <el-input v-model="form.description" placeholder="请输入商品描述" />
+        </el-form-item>
+        <el-form-item label="商品分类" prop="categoryId">
+          <el-select v-model="form.categoryId" placeholder="请选择商品分类">
+            <el-option v-for="item in categories" :key="item.id" :label="item.name" :value="item.id" />
+          </el-select>
+        </el-form-item>
+      </el-form>
+    </template>
+  </Table>
+</template>
+
+<script setup>
+import Table from "@/components/TableComponent.vue";
+import { globalApi } from "@/api/global/index.js";
+import { onMounted, ref } from "vue";
+
+const categories = ref([]);
+
+const columns = [
+  {
+    prop: 'name',
+    label: '商品名称',
+    align: 'center',
+  },
+  {
+    prop: 'image',
+    label: '商品图片',
+    align: 'center',
+  },
+  {
+    prop: 'price',
+    label: '商品价格',
+    align: 'center',
+  },
+  {
+    prop: 'description',
+    label: '商品描述',
+    align: 'center',
+  },
+  {
+    prop: 'category.name',
+    label: '商品分类',
+    align: 'center',
+  }
+]
+
+const rules = {
+  name: [
+    { required: true, message: '请输入商品名称', trigger: 'blur' },
+    { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
+  ],
+  image: [
+    { required: true, message: '请输入商品图片', trigger: 'blur' },
+  ],
+  price: [
+    { required: true, message: '请输入商品价格', trigger: 'blur' },
+    { min: 0, max: 10000, message: '请输入正确的价格', trigger: 'blur' }
+  ],
+  description: [
+    { required: true, message: '请输入商品描述', trigger: 'blur' },
+    { min: 3, max: 200, message: '长度在 3 到 200 个字符', trigger: 'blur' }
+  ],
+  categoryId: [
+    { required: true, message: '请选择商品分类', trigger: 'change' }
+  ]
+}
+
+
+onMounted(() => {
+  globalApi.categories.get(null, (res) => {
+    categories.value = res;
+  })
+});
+
+</script>

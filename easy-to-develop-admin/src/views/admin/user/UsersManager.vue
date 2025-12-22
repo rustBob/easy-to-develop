@@ -68,7 +68,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="角色" prop="role.id">
-          <el-radio-group v-model="form.role.id">
+          <el-radio-group v-model="form.roleId">
             <el-radio v-for="role in roles" :key="role.key" :label="role.id">{{ role.name }}</el-radio>
           </el-radio-group>
         </el-form-item>
