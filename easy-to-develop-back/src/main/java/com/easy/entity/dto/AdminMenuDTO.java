@@ -18,7 +18,7 @@ public class AdminMenuDTO {
     /**
      * 父级id
      */
-    private Long parentId;
+    private String parentId;
 
     /**
      * 所属角色id

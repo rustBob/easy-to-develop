@@ -66,7 +66,7 @@ public class AdminMenu {
      * 所属角色
      */
     @RelationOneToOne(
-            targetTable = "easy_role",
+            targetTable = "role",
             targetField = "id", selfField = "roleId"
     )
     private RoleVO role;
