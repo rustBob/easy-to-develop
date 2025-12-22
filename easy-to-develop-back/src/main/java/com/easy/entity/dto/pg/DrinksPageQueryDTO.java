@@ -1,9 +1,11 @@
-package com.easy.entity.dto;
+package com.easy.entity.dto.pg;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
-public class AdminMenuPageQueryDTO {
+public class DrinksPageQueryDTO {
     /**
      * 页码
      */
@@ -13,19 +15,14 @@ public class AdminMenuPageQueryDTO {
      * 页大小
      */
     private Integer pageSize;
-
     /**
-     * 父级id
-     */
-    private String parentId;
-
-    /**
-     * 菜单名称
+     * 名称
      */
     private String name;
 
     /**
-     * 菜单状态
+     * 价格
      */
-    private Integer visible;
+    private BigDecimal price;
+
 }

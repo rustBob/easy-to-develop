@@ -41,6 +41,16 @@ public class UserDTO{
     private String phone;
 
     /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 会员卡ID
+     */
+    private String memberCardID;
+
+    /**
      * 是否启用
      */
     private Integer enabled;

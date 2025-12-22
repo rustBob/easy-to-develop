@@ -4,7 +4,7 @@ import com.easy.annotation.AdminRestController;
 import com.easy.controller.BaseController;
 import com.easy.entity.AdminMenu;
 import com.easy.entity.dto.AdminMenuDTO;
-import com.easy.entity.dto.AdminMenuPageQueryDTO;
+import com.easy.entity.dto.pg.AdminMenuPageQueryDTO;
 import com.easy.entity.vo.AdminMenuVO;
 import com.easy.service.impl.AdminMenuServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

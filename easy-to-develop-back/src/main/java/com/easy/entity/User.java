@@ -7,13 +7,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("easy_user")
+@Table("user")
 public class User{
     /**
      * 主键id
@@ -47,6 +48,36 @@ public class User{
     private String phone;
 
     /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 生日
+     */
+    private Date birthday;
+
+    /**
+     * 会员卡等级ID
+     */
+    private Integer MemberCardId;
+
+    /**
+     * 总积分
+     */
+    private Integer totalPoints;
+
+    /**
+     * 可用积分
+     */
+    private Integer availablePoints;
+
+    /**
+     * 余额
+     */
+    private Integer balance;
+
+    /**
      * 是否启用
      */
     @Column(value = "is_enabled")
@@ -61,15 +92,26 @@ public class User{
     /**
      * 创建时间
      */
+    @Column(onInsertValue = "now()")
     private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
+    @Column(onInsertValue = "now()",onUpdateValue = "now()")
     private LocalDateTime updateTime;
 
 
     // ==============================关联表==============================
+    /**
+     * 角色表
+     */
     @RelationOneToOne(targetField = "id", selfField = "roleId")
     private Role role;
+
+    /**
+     * 会员卡表
+     */
+    @RelationOneToOne(targetField = "id", selfField = "MemberCardId")
+    private MemberCard memberCard;
 }

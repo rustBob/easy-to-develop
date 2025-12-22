@@ -1,9 +1,9 @@
-package com.easy.entity.dto;
+package com.easy.entity.dto.pg;
 
 import lombok.Data;
 
 @Data
-public class RolePageQueryDTO {
+public class BannerPageQueryDTO {
     /**
      * 页码
      */
@@ -14,8 +14,4 @@ public class RolePageQueryDTO {
      */
     private Integer pageSize;
 
-    /**
-     * 父级id
-     */
-    private String parentId;
 }

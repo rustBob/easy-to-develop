@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("easy_role")
+@Table("role")
 public class Role {
     /**
      * 主键

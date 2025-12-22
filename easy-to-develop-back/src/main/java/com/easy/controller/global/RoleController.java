@@ -4,7 +4,7 @@ import com.easy.annotation.GlobalRestController;
 import com.easy.controller.BaseController;
 import com.easy.entity.Role;
 import com.easy.entity.dto.RoleDTO;
-import com.easy.entity.dto.RolePageQueryDTO;
+import com.easy.entity.dto.pg.RolePageQueryDTO;
 import com.easy.entity.vo.RoleVO;
 import com.easy.service.impl.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

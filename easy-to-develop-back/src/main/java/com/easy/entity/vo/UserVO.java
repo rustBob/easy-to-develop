@@ -1,5 +1,6 @@
 package com.easy.entity.vo;
 
+import com.easy.entity.MemberCard;
 import com.easy.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 @Data
@@ -39,6 +41,36 @@ public class UserVO implements Serializable {
     private String phone;
 
     /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 生日
+     */
+    private Date birthday;
+
+    /**
+     * 会员卡等级ID
+     */
+    private Integer MemberCardId;
+
+    /**
+     * 总积分
+     */
+    private Integer totalPoints;
+
+    /**
+     * 可用积分
+     */
+    private Integer availablePoints;
+
+    /**
+     * 余额
+     */
+    private Integer balance;
+
+    /**
      * 是否启用
      */
     private Integer enabled;
@@ -65,5 +97,13 @@ public class UserVO implements Serializable {
     private LocalDateTime updateTime;
 
     // ==============================关联表==============================
+    /**
+     * 角色
+     */
     private Role role;
+
+    /**
+     * 会员卡
+     */
+    private MemberCard memberCard;
 }

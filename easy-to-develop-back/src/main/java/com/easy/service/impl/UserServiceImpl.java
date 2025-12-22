@@ -7,7 +7,7 @@ import com.easy.common.exception.AppException;
 import com.easy.config.SaTokenConfiguration;
 import com.easy.entity.User;
 import com.easy.entity.dto.UserDTO;
-import com.easy.entity.dto.UserPageQueryDTO;
+import com.easy.entity.dto.pg.UserPageQueryDTO;
 import com.easy.entity.vo.UserVO;
 import com.easy.mapper.UserMapper;
 import com.easy.service.UserService;
