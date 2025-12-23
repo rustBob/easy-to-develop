@@ -35,6 +35,13 @@ public enum Status {
 
     // 下单异常
     PRODUCT_NOT_FOUND(500, "未找到商品"),
+
+
+
+    // 优惠券异常
+    COUPON_TYPE_NOT_EXIST(500, "没有该类型优惠券"),
+    COUPON_NOT_FOUND(500, "未找到优惠券"),
+    OUT_OF_TIME(500, "已过期"),
     ;
 
 
