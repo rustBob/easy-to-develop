@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DrinksDTO {
+public class OrderItemsDTO {
 
     /**
      * id
@@ -19,28 +19,32 @@ public class DrinksDTO {
     private String id;
 
     /**
-     * 名称
+     * 饮品ID
      */
-    private String name;
+    private String drinkId;
 
     /**
-     * 种类
+     * 饮品数量
      */
-    private String category;
+    private Integer drinksQuantity;
 
     /**
-     * 图片路径
+     * 小料ID
      */
-    private String image;
-
-
-    /**
-     * 价格
-     */
-    private BigDecimal price;
+    private String addInsId;
 
     /**
-     * 描述
+     * 小料数量
      */
-    private String description;
+    private Integer addInsQuantity;
+
+    /**
+     * 总价
+     */
+    private BigDecimal totalPrice;
+
+    /**
+     * 饮品规格选项
+     */
+    private String specs;
 }

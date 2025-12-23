@@ -21,7 +21,7 @@ public class Drinks {
     /**
      * ID
      */
-    private Integer id;
+    private String id;
 
     /**
      * 名称
@@ -41,7 +41,7 @@ public class Drinks {
     /**
      * 图片路径
      */
-    private String img;
+    private String image;
 
     /**
      * 描述
