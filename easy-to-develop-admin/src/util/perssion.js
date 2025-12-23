@@ -13,7 +13,7 @@ export const checkRole = async (checkRoleKey) => {
   }
 
   const role = getRole(roleTrees, key);
-  return role.key === checkRoleKey || !!getRole(role.children, checkRoleKey);
+  return role?.key === checkRoleKey || !!getRole(role.children, checkRoleKey);
 }
 
 function getRole(roleTrees, roleKey) {

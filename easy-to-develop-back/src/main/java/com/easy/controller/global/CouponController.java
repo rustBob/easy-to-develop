@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @GlobalRestController
-@RequestMapping("/coupon")
+@RequestMapping("/coupons")
 public class CouponController extends BaseController<Coupon, CouponDTO, CouponVO, CouponPageQueryDTO> {
     @Autowired
     public CouponController(CouponServiceImpl service){super("globalCouponController",service);}

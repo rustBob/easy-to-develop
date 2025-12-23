@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @GlobalRestController
-@RequestMapping("/member-card")
+@RequestMapping("/member-cards")
 public class MemberCardController extends BaseController<MemberCard, MemberCardDTO, MemberCardVO, MemberCardPageQueryDTO> {
     @Autowired
     public MemberCardController(MemberCardServiceImpl service){ super("GlobalMemberCardController", service); };

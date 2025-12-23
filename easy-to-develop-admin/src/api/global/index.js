@@ -8,6 +8,10 @@ export const globalApi = {
     const resources = [
       'users',
       'roles',
+      'drinks',
+      'categories',
+      'add-ins',
+      'coupons'
     ]
 
     // 动态注册 api 方法
