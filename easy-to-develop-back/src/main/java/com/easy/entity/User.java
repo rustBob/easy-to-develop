@@ -68,11 +68,6 @@ public class User{
     private Integer totalPoints;
 
     /**
-     * 可用积分
-     */
-    private Integer availablePoints;
-
-    /**
      * 余额
      */
     private Integer balance;

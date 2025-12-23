@@ -21,7 +21,7 @@ public class MemberCardVO {
     /**
      * 会员等级
      */
-    private int memberLevel;
+    private Integer memberLevel;
 
     /**
      * 会员等级名
@@ -33,4 +33,8 @@ public class MemberCardVO {
      */
     private String key;
 
+    /**
+     * 折扣
+     */
+    private BigDecimal discount;
 }
