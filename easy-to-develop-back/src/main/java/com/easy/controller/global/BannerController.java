@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @GlobalRestController
-@RequestMapping("/banner")
+@RequestMapping("/banners")
 public class BannerController extends BaseController<Banner, BannerDTO, BannerVO, BannerPageQueryDTO> {
     @Autowired
     public BannerController(BannerServiceImpl service){super("globalBannerController", service);}
