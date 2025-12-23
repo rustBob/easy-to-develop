@@ -19,7 +19,7 @@ public class MemberCardPageQueryDTO {
     /**
      * 会员等级
      */
-    private int memberLevel;
+    private Integer memberLevel;
 
     /**
      * 会员等级名

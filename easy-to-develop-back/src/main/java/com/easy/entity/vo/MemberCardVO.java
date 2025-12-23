@@ -16,7 +16,7 @@ public class MemberCardVO {
     /**
      * id
      */
-    private Integer id;
+    private String id;
 
     /**
      * 会员等级
