@@ -28,7 +28,6 @@ public class MemberCardDTO {
      */
     private String cardName;
 
-
     /**
      * 会员等级标识
      */

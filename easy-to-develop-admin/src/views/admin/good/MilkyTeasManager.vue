@@ -25,8 +25,13 @@
             <el-option v-for="item in categories" :key="item.id" :label="item.name" :value="item.id" />
           </el-select>
         </el-form-item>
+        <el-form-item label="商品库存" prop="stock">
+          <el-input-number v-model="form.stock" placeholder="请输入库存" style="width: 200px" />
+        </el-form-item>
       </el-form>
     </template>
+
+
 
     <template #updateDialogForm="{ formRef, form, rules}">
       <el-form :ref="formRef" :model="form" :rules="rules" label-width="120px">
@@ -46,6 +51,9 @@
           <el-select v-model="form.categoryId" placeholder="请选择商品分类">
             <el-option v-for="item in categories" :key="item.id" :label="item.name" :value="item.id" />
           </el-select>
+        </el-form-item>
+        <el-form-item label="商品库存" prop="stock">
+          <el-input-number v-model="form.stock" placeholder="请输入库存" style="width: 200px" />
         </el-form-item>
       </el-form>
     </template>
@@ -84,6 +92,11 @@ const columns = [
     prop: 'category.name',
     label: '商品分类',
     align: 'center',
+  },
+  {
+    prop: 'stock',
+    label: '商品库存',
+    align: 'center',
   }
 ]
 
@@ -105,7 +118,11 @@ const rules = {
   ],
   categoryId: [
     { required: true, message: '请选择商品分类', trigger: 'change' }
-  ]
+  ],
+  stock: [
+    { required: true, message: '请输入商品库存', trigger: 'blur' },
+    { min: 0, max: 10000, message: '请输入正确的库存', trigger: 'blur' }
+  ],
 }
 
 
