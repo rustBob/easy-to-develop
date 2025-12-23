@@ -210,6 +210,10 @@ const props = defineProps({
   filterParam: {
     type: String,
     default: () => ""
+  },
+  pageSize: {
+    type: Number,
+    default: 10
   }
 })
 
@@ -239,7 +243,7 @@ const selectedRow = ref(null);
 const pageParams = ref({
   ...props.filter,
   pageNum: 1,
-  pageSize: 10,
+  pageSize: props.pageSize,
   count: 0
 })
 

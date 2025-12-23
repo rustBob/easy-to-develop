@@ -9,6 +9,7 @@
     :update-rules="rules"
     :preprocess-data="toTrees"
     :table-attr="tableAttr"
+    :page-size="20"
   >
     <template #managerAction>
       <el-button type="primary" @click="clearMenusCache">清除菜单缓存</el-button>
