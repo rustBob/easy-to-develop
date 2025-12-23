@@ -19,7 +19,7 @@ public class AddIns {
     /**
      * ID
      */
-    private Integer id;
+    private String id;
 
     /**
      * 名称

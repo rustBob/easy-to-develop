@@ -12,6 +12,12 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DrinksDTO {
+
+    /**
+     * id
+     */
+    private String id;
+
     /**
      * 名称
      */

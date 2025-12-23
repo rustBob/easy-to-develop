@@ -10,8 +10,10 @@ import com.easy.entity.vo.DrinksVO;
 import com.easy.mapper.DrinksMapper;
 import com.easy.service.DrinksService;
 import com.easy.util.AssembleParamsUtil;
+import com.easy.util.SnowflakeDistributeIdUtil;
 import com.mybatisflex.core.paginate.Page;
 import com.mybatisflex.core.query.QueryWrapper;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +23,15 @@ import java.util.Map;
 @Slf4j
 @Service
 public class DrinksServiceImpl extends BaseServiceImpl<Drinks, DrinksDTO, DrinksVO, DrinksPageQueryDTO> implements DrinksService {
+
+    @Resource
+    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
+
     @Autowired
     public DrinksServiceImpl(DrinksMapper mapper) { super(mapper);}
 
-
+    @Override
+    protected void beforePost(DrinksDTO drinksDTO) throws AppException {
+        drinksDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
+    }
 }

@@ -1,0 +1,47 @@
+package com.easy.entity;
+
+import com.mybatisflex.annotation.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigInteger;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table("locations")
+public class Locations {
+
+    /**
+     * id
+     */
+    private String id;
+
+    /**
+     * 联系电话
+     */
+    private String phone;
+
+    /**
+     * 用户iD
+     */
+    private String userId;
+
+    /**
+     * 地址
+     */
+    private String position;
+
+    /**
+     * 详细位置
+     */
+    private String detail;
+
+    /**
+     * 位置标签，家，学校...
+     */
+    private String tag;
+}

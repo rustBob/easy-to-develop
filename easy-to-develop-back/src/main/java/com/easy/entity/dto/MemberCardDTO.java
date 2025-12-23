@@ -28,10 +28,6 @@ public class MemberCardDTO {
      */
     private String cardName;
 
-    /**
-     * 折扣力度
-     */
-    private String discount;
 
     /**
      * 会员等级标识
