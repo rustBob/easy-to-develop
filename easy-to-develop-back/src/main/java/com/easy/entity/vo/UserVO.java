@@ -31,6 +31,11 @@ public class UserVO implements Serializable {
     private String username;
 
     /**
+     * 头像
+     */
+    private String avatar;
+
+    /**
      * 用户性别 （1为男，0为女，-1为未知）
      */
     private Integer sex;
@@ -39,11 +44,6 @@ public class UserVO implements Serializable {
      * 电话
      */
     private String phone;
-
-    /**
-     * 邮箱
-     */
-    private String email;
 
     /**
      * 生日

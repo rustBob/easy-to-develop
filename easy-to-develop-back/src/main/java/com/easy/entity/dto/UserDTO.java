@@ -26,6 +26,11 @@ public class UserDTO{
     private String username;
 
     /**
+     * 头像
+     */
+    private String avatar;
+
+    /**
      * 密码
      */
     private String password;
@@ -39,11 +44,6 @@ public class UserDTO{
      * 电话
      */
     private String phone;
-
-    /**
-     * 邮箱
-     */
-    private String email;
 
     /**
      * 会员卡ID
