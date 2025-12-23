@@ -11,7 +11,14 @@ export const globalApi = {
       'drinks',
       'categories',
       'add-ins',
-      'coupons'
+      'coupons',
+      'specs',
+      'banners',
+      'members',
+      'member-cards',
+      'orders',
+      'addresses',
+      'stores',
     ]
 
     // 动态注册 api 方法
@@ -30,6 +37,16 @@ export const globalApi = {
       logout: async function (logoutData = {}, success = null, failure = null){
         const url = buildPath(prefix, ['auth'], 'post', {}, 'logout');
         return handleRequest(ApiClient.post(url, common.trimObj(logoutData)), success, failure);
+      },
+    }
+    apis['files'] = {
+      getUploadUrl: async function (fileData = {}, success = null, failure = null){
+        const url = buildPath(prefix, ['files'], 'post', {}, 'getUploadUrl');
+        return handleRequest(ApiClient.post(url, fileData), success, failure);
+      },
+      callback: async function (callbackData = {}, success = null, failure = null){
+        const url = buildPath(prefix, ['files'], 'post', {}, 'callback');
+        return handleRequest(ApiClient.post(url, callbackData), success, failure);
       },
     }
 
