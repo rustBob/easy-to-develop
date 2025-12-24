@@ -78,7 +78,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserDTO, UserVO, User
         User u = getOne(QueryWrapper.create().eq(User::getId, userDTO.getId()));
 
         String password = userDTO.getPassword();
-        if(!password.isEmpty()){
+        if(password != null && !password.isEmpty()){
             // 加密
             // 1.获取密钥
             byte[] salt = AESKeyGenerator.generateSaltByLong(Long.parseLong(u.getId()));

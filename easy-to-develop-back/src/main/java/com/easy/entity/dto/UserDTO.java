@@ -26,6 +26,11 @@ public class UserDTO{
     private String username;
 
     /**
+     * 昵称
+     */
+    private String nickname;
+
+    /**
      * 头像
      */
     private String avatar;

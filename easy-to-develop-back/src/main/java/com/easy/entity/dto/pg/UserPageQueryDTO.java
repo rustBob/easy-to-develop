@@ -32,6 +32,11 @@ public class UserPageQueryDTO{
     private String username;
 
     /**
+     * 昵称
+     */
+    private String nickname;
+
+    /**
      * 用户性别 （1为男，0为女，-1为未知）
      */
     private Integer sex;
