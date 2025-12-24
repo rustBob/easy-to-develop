@@ -16,7 +16,7 @@ public class Categories {
     /**
      * ID
      */
-    private Integer id;
+    private String id;
 
     /**
      * 名称

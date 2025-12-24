@@ -5,41 +5,41 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddInsVO {
+public class UserCouponVO {
+
     /**
-     * ID
+     * id
      */
     private String id;
 
     /**
-     * 名称
+     * 用户ID
      */
-    private String name;
+    private String userId;
 
     /**
-     * 价格
+     * 优惠券ID
      */
-    private BigDecimal price;
+    private String couponId;
 
     /**
-     * 描述
+     * 是否有效
      */
-    private String description;
+    private Integer isValid;
+
+    /**
+     * 过期时间
+     */
+    private Integer expiration;
 
     /**
      * 创建时间
      */
     private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    private LocalDateTime updateTime;
 }

@@ -6,9 +6,9 @@ debug: true
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/milk_tea?characterEncoding=utf-8
-    username: root
-    password: cjzl22446
+    url: jdbc:mysql://49.232.91.178:3306/mk_db?characterEncoding=utf-8
+    username: mk_db
+    password: 7HhN6Bn8WiY6imjY
     driver-class-name: com.mysql.cj.jdbc.Driver
   data:
     redis:

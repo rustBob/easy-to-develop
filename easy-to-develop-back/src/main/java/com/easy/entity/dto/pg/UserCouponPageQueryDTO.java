@@ -2,10 +2,8 @@ package com.easy.entity.dto.pg;
 
 import lombok.Data;
 
-import java.math.BigDecimal;
-
 @Data
-public class DrinksPageQueryDTO {
+public class UserCouponPageQueryDTO {
     /**
      * 页码
      */
@@ -15,14 +13,21 @@ public class DrinksPageQueryDTO {
      * 页大小
      */
     private Integer pageSize;
-    /**
-     * 名称
-     */
-    private String name;
 
     /**
-     * 种类
+     * 用户ID
      */
-    private String categoryId;
+    private String userId;
+
+    /**
+     * 优惠券ID
+     */
+    private String couponId;
+
+    /**
+     * 是否有效
+     */
+    private Integer isValid;
+
 
 }

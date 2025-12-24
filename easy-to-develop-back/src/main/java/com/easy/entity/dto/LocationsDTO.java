@@ -1,46 +1,45 @@
 package com.easy.entity.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
+import java.math.BigInteger;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DrinksDTO {
-
+public class LocationsDTO {
     /**
      * id
      */
     private String id;
 
     /**
-     * 名称
+     * 联系电话
      */
-    private String name;
+    private String phone;
 
     /**
-     * 种类
+     * 用户iD
      */
-    private String category;
+    private String userId;
 
     /**
-     * 图片路径
+     * 地址
      */
-    private String image;
-
-
-    /**
-     * 价格
-     */
-    private BigDecimal price;
+    private String position;
 
     /**
-     * 描述
+     * 详细位置
      */
-    private String description;
+    private String detail;
+
+    /**
+     * 位置标签，家，学校...
+     */
+    private String tag;
 }

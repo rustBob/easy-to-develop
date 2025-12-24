@@ -1,50 +1,51 @@
 package com.easy.entity;
 
 import com.mybatisflex.annotation.Column;
+import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("add_ins")
-public class AddIns {
+@Table("user_coupon")
+public class UserCoupon {
+
     /**
-     * ID
+     * id
      */
+    @Id
     private String id;
 
     /**
-     * 名称
+     * 用户ID
      */
-    private String name;
+    private String userId;
 
     /**
-     * 价格
+     * 优惠券ID
      */
-    private BigDecimal price;
+    private String couponId;
 
     /**
-     * 描述
+     * 是否有效
      */
-    private String description;
+    private Integer isValid;
+
+    /**
+     * 过期时间
+     */
+    private Integer expiration;
 
     /**
      * 创建时间
      */
     @Column(onInsertValue = "now()")
     private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    @Column(onInsertValue = "now()",onUpdateValue = "now()")
-    private LocalDateTime updateTime;
 }

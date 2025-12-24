@@ -16,10 +16,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DrinksVO {
+
     /**
      * ID
      */
-    private Integer id;
+    private String id;
 
     /**
      * 名称
@@ -31,6 +32,15 @@ public class DrinksVO {
      */
     private BigDecimal price;
 
+    /**
+     * 种类
+     */
+    private Integer categoryId;
+
+    /**
+     * 图片路径
+     */
+    private String image;
 
     /**
      * 描述

@@ -5,13 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DrinksDTO {
+public class UserCouponDTO {
 
     /**
      * id
@@ -19,28 +19,27 @@ public class DrinksDTO {
     private String id;
 
     /**
-     * 名称
+     * 用户ID
      */
-    private String name;
+    private String userId;
 
     /**
-     * 种类
+     * 优惠券ID
      */
-    private String category;
+    private String couponId;
 
     /**
-     * 图片路径
+     * 是否有效
      */
-    private String image;
-
-
-    /**
-     * 价格
-     */
-    private BigDecimal price;
+    private Integer isValid;
 
     /**
-     * 描述
+     * 过期时间
      */
-    private String description;
+    private Integer expiration;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
 }
