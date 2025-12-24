@@ -11,8 +11,8 @@
         <el-form-item label="规格名称" prop="name">
           <el-input v-model="form.name" placeholder="请输入规格名称" />
         </el-form-item>
-        <el-form-item label="规格值" prop="values">
-          <el-input-tag v-model="form.values" placeholder="请输入规格值，回车确定" />
+        <el-form-item label="规格值" prop="option">
+          <el-input-tag v-model="form.option" placeholder="请输入规格值，回车确定" />
         </el-form-item>
       </el-form>
     </template>
@@ -22,8 +22,8 @@
         <el-form-item label="规格名称" prop="name">
           <el-input v-model="form.name" placeholder="请输入规格名称" />
         </el-form-item>
-        <el-form-item label="规格值" prop="values">
-          <el-input-tag v-model="form.values" placeholder="请输入规格值，回车确定" />
+        <el-form-item label="规格值" prop="option">
+          <el-input-tag v-model="form.option" placeholder="请输入规格值，回车确定" />
         </el-form-item>
       </el-form>
     </template>
@@ -36,14 +36,14 @@ import { globalApi } from "@/api/global/index.js";
 
 const columns = [
   { prop: 'name', label: '名称', align: 'center' },
-  { prop: 'values', label: '值', align: 'center' },
+  { prop: 'option', label: '值', align: 'center' },
 ]
 
 const rules = {
   name: [
     { required: true, message: '请输入规格名称', trigger: ['blur'] }
   ],
-  values: [
+  option: [
     { required: true, message: '请输入规格值', trigger: ['blur'] }
   ]
 }
