@@ -1,8 +1,7 @@
 package com.easy.entity;
 
-import com.mybatisflex.annotation.Column;
-import com.mybatisflex.annotation.RelationManyToOne;
-import com.mybatisflex.annotation.Table;
+import com.mybatisflex.annotation.*;
+import com.mybatisflex.core.keygen.KeyGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +20,7 @@ public class Drinks {
     /**
      * ID
      */
+    @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
     private String id;
 
     /**
@@ -36,7 +36,7 @@ public class Drinks {
     /**
      * 种类
      */
-    private Integer categoryId;
+    private String categoryId;
 
     /**
      * 图片路径

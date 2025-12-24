@@ -35,7 +35,7 @@ public class DrinksVO {
     /**
      * 种类
      */
-    private Integer categoryId;
+    private String categoryId;
 
     /**
      * 图片路径
