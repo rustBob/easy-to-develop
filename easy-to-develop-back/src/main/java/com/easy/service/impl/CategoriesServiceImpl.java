@@ -14,15 +14,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CategoriesServiceImpl extends BaseServiceImpl<Categories, CategoriesDTO, CategoriesVO, CategoriesPageQueryDTO> implements CategoriesService {
-
-    @Resource
-    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
-
     @Autowired
     public CategoriesServiceImpl(CategoriesMapper mapper) {super(mapper);}
-
-    @Override
-    protected void beforePost(CategoriesDTO categoriesDTO) throws AppException {
-        categoriesDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
-    }
 }

@@ -16,15 +16,6 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class LocationsServiceImpl extends BaseServiceImpl<Locations, LocationsDTO, LocationsVO, LocationsPageQueryDTO> implements LocationsService {
-
-    @Resource
-    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
-
     @Autowired
     public LocationsServiceImpl(LocationsMapper mapper) {super(mapper);}
-
-    @Override
-    protected void beforePost(LocationsDTO locationsDTO) throws AppException {
-        locationsDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
-    }
 }

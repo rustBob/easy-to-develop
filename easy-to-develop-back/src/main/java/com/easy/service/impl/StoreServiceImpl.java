@@ -18,15 +18,6 @@ import org.springframework.stereotype.Service;
 @Service
 @NoArgsConstructor
 public class StoreServiceImpl extends BaseServiceImpl<Store, StoreDTO, StoreVO, StorePageQueryDTO> implements StoreService {
-
-    @Resource
-    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
-
     @Autowired
     public StoreServiceImpl(StoreMapper mapper){super(mapper);}
-
-    @Override
-    protected void beforePost(StoreDTO storeDTO) throws AppException {
-        storeDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
-    }
 }

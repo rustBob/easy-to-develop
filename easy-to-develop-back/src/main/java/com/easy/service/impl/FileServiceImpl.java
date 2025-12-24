@@ -65,8 +65,8 @@ public class FileServiceImpl extends BaseServiceImpl<File, FileDTO, FileVO, File
 
     public void callback(FileDTO dto) {
         File f = new File();
-        f.setStatus(1);
         BeanUtils.copyProperties(dto, f);
+        f.setStatus(1);
 
         updateById(f);
     }

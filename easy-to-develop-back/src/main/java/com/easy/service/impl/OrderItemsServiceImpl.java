@@ -25,8 +25,6 @@ import org.springframework.stereotype.Service;
 @Service
 @NoArgsConstructor
 public class OrderItemsServiceImpl extends BaseServiceImpl<OrderItems, OrderItemsDTO, OrderItemsVO, OrderItemsPageQueryDTO> implements OrderItemsService {
-    @Resource
-    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
 
     @Resource
     private DrinksServiceImpl drinksService;
@@ -49,8 +47,5 @@ public class OrderItemsServiceImpl extends BaseServiceImpl<OrderItems, OrderItem
             log.error("drink or add_ins is null");
             throw new AppException(Status.PRODUCT_NOT_FOUND);
         }
-
-
-        orderItemsDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
     }
 }

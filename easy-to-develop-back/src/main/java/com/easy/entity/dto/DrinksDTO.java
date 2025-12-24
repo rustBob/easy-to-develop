@@ -26,13 +26,12 @@ public class DrinksDTO {
     /**
      * 种类
      */
-    private String category;
+    private String categoryId;
 
     /**
      * 图片路径
      */
     private String image;
-
 
     /**
      * 价格
@@ -43,4 +42,9 @@ public class DrinksDTO {
      * 描述
      */
     private String description;
+
+    /**
+     * 商品库存
+     */
+    private Integer stock;
 }

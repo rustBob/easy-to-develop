@@ -24,14 +24,6 @@ import java.util.Map;
 @Service
 public class DrinksServiceImpl extends BaseServiceImpl<Drinks, DrinksDTO, DrinksVO, DrinksPageQueryDTO> implements DrinksService {
 
-    @Resource
-    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
-
     @Autowired
     public DrinksServiceImpl(DrinksMapper mapper) { super(mapper);}
-
-    @Override
-    protected void beforePost(DrinksDTO drinksDTO) throws AppException {
-        drinksDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
-    }
 }

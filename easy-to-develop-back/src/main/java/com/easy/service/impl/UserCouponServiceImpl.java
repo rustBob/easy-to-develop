@@ -27,10 +27,6 @@ import java.time.temporal.ChronoUnit;
 @Service
 @NoArgsConstructor
 public class UserCouponServiceImpl extends BaseServiceImpl<UserCoupon, UserCouponDTO, UserCouponVO, UserCouponPageQueryDTO> implements UserCouponService {
-
-    @Resource
-    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
-
     @Resource
     private UserServiceImpl userService;
 
@@ -56,8 +52,6 @@ public class UserCouponServiceImpl extends BaseServiceImpl<UserCoupon, UserCoupo
             log.error("不存在此类型优惠券");
             throw new AppException(Status.COUPON_TYPE_NOT_EXIST);
         }
-
-        userCouponDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
     }
 
 
