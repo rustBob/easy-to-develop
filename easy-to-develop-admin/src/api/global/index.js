@@ -17,7 +17,7 @@ export const globalApi = {
       'members',
       'member-cards',
       'orders',
-      'addresses',
+      'locations',
       'stores',
       'user-coupons'
     ]

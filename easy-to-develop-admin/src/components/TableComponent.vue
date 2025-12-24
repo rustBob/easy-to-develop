@@ -241,7 +241,6 @@ const updateObj = ref({
 const selectedRow = ref(null);
 
 const pageParams = ref({
-  ...props.filter,
   pageNum: 1,
   pageSize: props.pageSize,
   count: 0
@@ -273,6 +272,7 @@ const refreshData = () => {
   };
 
   const params = {
+    ...props.filter,
     ...pageParams.value,
   };
 
@@ -306,6 +306,11 @@ const addRow = () => {
       ElNotification.error('添加失败:' + res.data.message);
       btnLoading.value.add = false;
     };
+
+    props.filter && (addObj.value._form = {
+      ...props.filter,
+      ...addObj.value._form
+    });
 
     props.dataDriver.add(null, addObj.value._form, success, failure);
   })

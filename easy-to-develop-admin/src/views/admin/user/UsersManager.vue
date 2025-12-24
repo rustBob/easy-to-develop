@@ -77,6 +77,7 @@
 
     <template #rowAction="{ row }">
       <el-dropdown-item @click="checkCoupon(row)" >查看优惠券</el-dropdown-item>
+      <el-dropdown-item @click="checkAddress(row)" >查看地址</el-dropdown-item>
     </template>
   </Table>
 
@@ -109,6 +110,9 @@ import { globalApi } from '@/api/global';
 import Table from '@/components/TableComponent.vue'
 import { h, onMounted, ref } from 'vue'
 import { ElTag, ElDialog } from 'element-plus';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const roles = ref([])
 const coupons = ref([])
@@ -258,5 +262,9 @@ const deleteCoupon = (row) => {
     const index = couponList.value.findIndex(e => String(e.id) === String(row.id))
     if (index !== -1) couponList.value.splice(index, 1)
   }, null, 'use')
+}
+
+const checkAddress = (row) => {
+  router.push(`/admin/users/address/${row.id}`)
 }
 </script>

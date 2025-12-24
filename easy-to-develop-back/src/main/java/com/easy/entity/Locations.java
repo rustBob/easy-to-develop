@@ -35,6 +35,16 @@ public class Locations {
     private Long userId;
 
     /**
+     * 收货人
+     */
+    private String name;
+
+    /**
+     * 性别
+     */
+    private Integer gender;
+
+    /**
      * 地址
      */
     private String position;

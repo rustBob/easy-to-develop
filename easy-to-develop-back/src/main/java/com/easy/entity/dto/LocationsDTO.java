@@ -19,6 +19,16 @@ public class LocationsDTO {
     private Long id;
 
     /**
+     * 收货人
+     */
+    private String name;
+
+    /**
+     * 性别
+     */
+    private Integer gender;
+
+    /**
      * 联系电话
      */
     private String phone;

@@ -22,6 +22,16 @@ public class UserPageQueryDTO{
     private String roleId;
 
     /**
+     * 总积分
+     */
+    private Integer totalPoints;
+
+    /**
+     * 余额
+     */
+    private Integer balance;
+
+    /**
      * 主键id
      */
     private Long id;

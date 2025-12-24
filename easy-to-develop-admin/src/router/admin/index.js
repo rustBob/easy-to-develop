@@ -61,6 +61,11 @@ export default{
       name: "Admin",
       component: () => import('@/views/IndexView.vue'),
       children: [
+        {
+          path: 'users/address/:userId',
+          props: route => ({ userId: route.params.userId }),
+          component: () => import('@/views/admin/user/AddressesManager.vue')
+        }
       ],
     }
     roots.forEach(item => {
