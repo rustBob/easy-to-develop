@@ -1,12 +1,20 @@
 package com.easy.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class COSConfiguration {
+    @Value("${tencent cos.bucket}")
+    public static String BUCKET_NAME;
 
-    public static final String BUCKET_NAME = "blog-1369198252";
-    public static final String REGION = "ap-chengdu";
-    public static final String SECRET_ID = "AKIDqItLgJVaYO5d1FNSPBlFd7f3HNQI2c1F";
-    public static final String SECRET_KEY = "74rTtMhq0MNIA2gAUiojU6bx75sVwCG8";
+    @Value("${tencent cos.region}")
+    public static String REGION;
+
+    @Value("${tencent cos.secretId}")
+    public static String SECRET_ID;
+
+
+    @Value("${tencent cos.secretKey}")
+    public static String SECRET_KEY;
 }

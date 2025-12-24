@@ -34,3 +34,9 @@ sa-token:
   secret-key: easy-to-develop-password
   # 是否从 cookie 中读取 token
   isReadCookie: false
+
+tencent cos:
+  bucket: blog-1369198252
+  region: ap-guangzhou
+  secretId: AKIDqItLgJVaYO5d1FNSPBlFd7f3HNQI2c1F
+  secretKey: 74rTtMhq0MNIA2gAUiojU6bx75sVwCG8
