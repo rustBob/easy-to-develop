@@ -172,3 +172,31 @@ const handleImageSuccess = (response, file, form) => {
 }
 
 </script>
+
+<style scoped>
+.image-uploader {
+  width: 178px;
+  height: 178px;
+  border: 1px dashed var(--el-border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--el-fill-color-light);
+}
+.image-uploader:hover {
+  border-color: var(--el-color-primary);
+}
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.image-uploader-icon {
+  font-size: 28px;
+  color: var(--el-text-color-secondary);
+}
+</style>
