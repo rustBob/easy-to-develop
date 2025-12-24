@@ -12,7 +12,15 @@
           <el-input v-model="form.name" placeholder="请输入商品名称" />
         </el-form-item>
         <el-form-item label="商品图片" prop="image">
-          <el-input v-model="form.image" placeholder="请输入商品图片" />
+          <el-upload
+            class="image-uploader"
+            :show-file-list="false"
+            :on-success="(res, file) => handleImageSuccess(res, file, form)"
+            :before-upload="(file) => beforeImageUpload(file, form)"
+          >
+            <img v-if="imageUrl" :src="imageUrl" class="image" />
+            <el-icon v-else class="image-uploader-icon"><Plus /></el-icon>
+          </el-upload>
         </el-form-item>
         <el-form-item label="商品价格" prop="price">
           <el-input v-model="form.price" placeholder="请输入商品价格" />
@@ -39,7 +47,15 @@
           <el-input v-model="form.name" placeholder="请输入商品名称" />
         </el-form-item>
         <el-form-item label="商品图片" prop="image">
-          <el-input v-model="form.image" placeholder="请输入商品图片" />
+          <el-upload
+            class="image-uploader"
+            :show-file-list="false"
+            :on-success="(res, file) => handleImageSuccess(res, file, form)"
+            :before-upload="(file) => beforeImageUpload(file, form)"
+          >
+            <img v-if="form.image" :src="form.image" class="image" />
+            <el-icon v-else class="image-uploader-icon"><Plus /></el-icon>
+          </el-upload>
         </el-form-item>
         <el-form-item label="商品价格" prop="price">
           <el-input v-model="form.price" placeholder="请输入商品价格" />
@@ -63,9 +79,12 @@
 <script setup>
 import Table from "@/components/TableComponent.vue";
 import { globalApi } from "@/api/global/index.js";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, h } from "vue";
+import { upload } from "@/api/file.js";
+import { Plus } from "@element-plus/icons-vue";
 
 const categories = ref([]);
+const imageUrl = ref('');
 
 const columns = [
   {
@@ -77,6 +96,13 @@ const columns = [
     prop: 'image',
     label: '商品图片',
     align: 'center',
+    template: (row) => {
+      return h('img', {
+        src: row.image,
+        alt: row.name,
+        class: 'image'
+      })
+    }
   },
   {
     prop: 'price',
@@ -110,7 +136,7 @@ const rules = {
   ],
   price: [
     { required: true, message: '请输入商品价格', trigger: 'blur' },
-    { min: 0, max: 10000, message: '请输入正确的价格', trigger: 'blur' }
+    { type: 'double', min: 0, max: 10000, message: '请输入正确的价格', trigger: 'blur' }
   ],
   description: [
     { required: true, message: '请输入商品描述', trigger: 'blur' },
@@ -121,7 +147,7 @@ const rules = {
   ],
   stock: [
     { required: true, message: '请输入商品库存', trigger: 'blur' },
-    { min: 0, max: 10000, message: '请输入正确的库存', trigger: 'blur' }
+    { type: 'number', min: 0, max: 10000, message: '请输入正确的库存', trigger: 'blur' }
   ],
 }
 
@@ -132,4 +158,45 @@ onMounted(() => {
   })
 });
 
+const beforeImageUpload = async (file, form) => {
+  const res = await upload([file]);
+  if (res && res.code === 200 && Array.isArray(res.data) && res.data.length > 0) {
+    imageUrl.value = res.data[0];
+    form.image = imageUrl.value;
+  }
+  return false;
+}
+
+const handleImageSuccess = (response, file, form) => {
+  form.image = imageUrl.value;
+}
+
 </script>
+
+<style scoped>
+.image-uploader {
+  width: 178px;
+  height: 178px;
+  border: 1px dashed var(--el-border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--el-fill-color-light);
+}
+.image-uploader:hover {
+  border-color: var(--el-color-primary);
+}
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.image-uploader-icon {
+  font-size: 28px;
+  color: var(--el-text-color-secondary);
+}
+</style>

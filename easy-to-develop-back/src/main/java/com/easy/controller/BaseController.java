@@ -14,7 +14,7 @@ public class BaseController<T, DTO, VO, PQDTO> {
 
     private final String controllerName;
 
-    private final BaseService<T, DTO, VO, PQDTO> service;
+    protected final BaseService<T, DTO, VO, PQDTO> service;
 
     public BaseController(String controllerName, BaseService<T, DTO, VO, PQDTO> service){
         this.controllerName = controllerName;

@@ -21,7 +21,7 @@ export default{
     let adminMenuCached = store.get("menus");
     if (!adminMenuCached) {
       hasChange = true;
-      await adminApi["menus"].get(null, async data => {
+      await adminApi["menus"].get(null, null, async data => {
         store.set("menus", data);
         adminMenuCached = data;
       });

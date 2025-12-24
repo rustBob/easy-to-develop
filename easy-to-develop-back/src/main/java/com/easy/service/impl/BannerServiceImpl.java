@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BannerServiceImpl extends BaseServiceImpl<Banner, BannerDTO, BannerVO, BannerPageQueryDTO> implements BannerService {
+
     @Autowired
-    public BannerServiceImpl(BannerMapper mapper){super(mapper);}
+    BannerServiceImpl(BannerMapper mapper) {
+        super(mapper);
+    }
 }

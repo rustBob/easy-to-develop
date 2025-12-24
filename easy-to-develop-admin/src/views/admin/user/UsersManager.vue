@@ -76,18 +76,47 @@
     </template>
 
     <template #rowAction="{ row }">
-      <el-dropdown-item @click="forceLogout(row)" v-if="row.online" >强制下线</el-dropdown-item>
+      <el-dropdown-item @click="checkCoupon(row)" >查看优惠券</el-dropdown-item>
     </template>
   </Table>
+
+  <el-dialog v-model="couponDialogVisible" title="用户优惠券" width="680px">
+    <div style="margin-bottom:12px; display:flex; gap:12px; align-items:center;">
+      <el-select v-model="selectedCouponId" placeholder="选择优惠券" style="width:240px">
+        <el-option v-for="c in coupons" :key="c.id" :label="c.name" :value="String(c.id)" />
+      </el-select>
+      <el-button type="primary" @click="addCoupon">添加</el-button>
+    </div>
+    <el-table :data="couponList" size="small" border>
+      <el-table-column prop="name" label="名称" align="center" />
+      <el-table-column prop="type" label="类型" align="center" />
+      <el-table-column prop="value" label="面值" align="center" />
+      <el-table-column prop="minAmount" label="最低金额" align="center" />
+      <el-table-column label="操作" align="center" width="120">
+        <template #default="{ row }">
+          <el-button type="danger" size="small" @click="deleteCoupon(row)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <template #footer>
+      <el-button @click="couponDialogVisible=false">关闭</el-button>
+    </template>
+  </el-dialog>
 </template>
 
 <script setup>
 import { globalApi } from '@/api/global';
 import Table from '@/components/TableComponent.vue'
 import { h, onMounted, ref } from 'vue'
-import { ElNotification, ElTag, ElDialog } from 'element-plus';
+import { ElTag, ElDialog } from 'element-plus';
 
 const roles = ref([])
+const coupons = ref([])
+const couponDialogVisible = ref(false)
+const couponList = ref([])
+const currentUser = ref(null)
+const selectedCouponId = ref(null)
+
 
 const columns = [
   {
@@ -180,39 +209,54 @@ const updateRules = {
 delete updateRules.roleId;
 
 onMounted(() => {
-  globalApi['roles'].get(null, (res) => {
+  globalApi['roles'].get(null, null, (res) => {
     roles.value = res.map(role => ({
       id: String(role.id),
       name: role.name,
       key: role.key
     }))
   }, null)
+
+  globalApi['coupons'].get(null,null, (res) => {
+    coupons.value = res
+  }, null)
 })
 
-const forceLogout = (row) => {
-  ElDialog.confirm({
-    title: '确认强制下线',
-    message: '确认强制下线用户 ' + row.username + ' 吗？',
-    confirmButtonText: '确定',
-    cancelButtonText: '取消',
-    type: 'warning',
-  }).then(() => {
-    globalApi['users'].forceLogout({ id: row.id }, (res) => {
-      if (res.code === 200) {
-        ElNotification.success({
-          title: '成功',
-          message: '强制下线成功'
-        });
-        row.online = 0;
-      } else {
-        ElNotification.error({
-          title: '失败',
-          message: res.msg || '强制下线失败'
-        });
-      }
-    }, null)
-  }).catch(() => {
-    // 取消操作
-  });
+const checkCoupon = (row) => {
+  currentUser.value = row
+  couponList.value = Array.isArray(row.couponList) ? JSON.parse(JSON.stringify(row.couponList)) : []
+  couponDialogVisible.value = true
+}
+
+const addCoupon = () => {
+  if (!selectedCouponId.value) return
+  const c = coupons.value.find(e => String(e.id) === String(selectedCouponId.value))
+  if (!c) return
+
+  globalApi['user-coupons'].add(null, {
+    userId: String(currentUser.value.id),
+    couponId: String(selectedCouponId.value)
+  }, () => {
+    couponList.value.push({
+      id: String(c.id),
+      name: c.name,
+      type: c.type,
+      value: c.value,
+      minAmount: c.minAmount,
+      createTime: c.createTime || new Date().toISOString(),
+      updateTime: c.updateTime || new Date().toISOString()
+    })
+    selectedCouponId.value = null
+  }, null)
+}
+
+const deleteCoupon = (row) => {
+  globalApi['user-coupons'].update(null, {
+    userId: String(currentUser.value.id),
+    couponId: String(row.id)
+  }, () => {
+    const index = couponList.value.findIndex(e => String(e.id) === String(row.id))
+    if (index !== -1) couponList.value.splice(index, 1)
+  }, null, 'use')
 }
 </script>

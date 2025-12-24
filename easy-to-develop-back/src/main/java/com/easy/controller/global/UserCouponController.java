@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @GlobalRestController
-@RequestMapping("user-coupon")
+@RequestMapping("user-coupons")
 public class UserCouponController {
 
     @Resource
     private UserCouponServiceImpl userCouponService;
 
-    @PostMapping("/post")
+    @PostMapping
     public Result<String> post(@RequestBody UserCouponDTO userCouponDTO) throws AppException {
         log.info("用户获取优惠券 ---- dto：{}", userCouponDTO);
         userCouponService.post(userCouponDTO);

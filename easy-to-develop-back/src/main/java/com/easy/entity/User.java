@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -115,4 +116,14 @@ public class User{
      */
     @RelationOneToOne(targetField = "id", selfField = "MemberCardId")
     private MemberCard memberCard;
+
+    /**
+     * 优惠券表
+     */
+    @RelationManyToMany(
+            joinTable = "user_coupon",
+            selfField = "id", joinSelfColumn = "user_id",
+            targetField = "id", joinTargetColumn = "coupon_id"
+    )
+    private List<Coupon> couponList;
 }

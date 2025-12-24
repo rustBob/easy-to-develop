@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CouponServiceImpl extends BaseServiceImpl<Coupon, CouponDTO, CouponVO, CouponPageQueryDTO> implements CouponService {
-
     @Autowired
-    public CouponServiceImpl(CouponMapper mapper){super(mapper);}
-
+    public CouponServiceImpl(CouponMapper mapper) { super(mapper);}
 }
