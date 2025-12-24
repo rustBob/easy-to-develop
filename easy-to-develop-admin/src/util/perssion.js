@@ -7,7 +7,7 @@ let roleTrees = [];
 export const checkRole = async (checkRoleKey) => {
   const key = Store.get('user')?.role?.key;
   if(roleTrees.length === 0){
-    await globalApi["roles"].get(null, data => {
+    await globalApi["roles"].get(null, null, data => {
       roleTrees = toTrees(data);
     });
   }

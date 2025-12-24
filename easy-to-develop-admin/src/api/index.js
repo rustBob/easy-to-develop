@@ -173,7 +173,8 @@ export function generateCommonApis(versionPrefix, resources) {
 
     apis[resource] = {
       // GET /v1/activities/[:pk1]/stages/[:pk2]/projects
-      list: async function (pathParams = {}, filterData = null, success = null, failure = defaultFailure) {        let url = buildPath(versionPrefix, segments, 'list', pathParams, 'list');
+      list: async function (pathParams = {}, filterData = {}, success = null, failure = defaultFailure) {
+        let url = buildPath(versionPrefix, segments, 'list', pathParams, 'list');
         if (filterData && typeof filterData === 'object') {
           filterData = common.trimObj(filterData);
           const query = Object.entries(filterData)
@@ -188,14 +189,14 @@ export function generateCommonApis(versionPrefix, resources) {
       },
 
       // POST /v1/activities/:pk1/stages/:pk2/projects
-      add: async function (pathParams = {}, addData = {}, success = null, failure = defaultFailure) {
-        const url = buildPath(versionPrefix, segments, 'add', pathParams);
+      add: async function (pathParams = {}, addData = {}, success = null, failure = defaultFailure , suffix = '') {
+        const url = buildPath(versionPrefix, segments, 'add', pathParams, suffix);
         return handleRequest(ApiClient.post(url, common.trimObj(addData)), success, failure);
       },
 
       // DELETE /v1/activities/[:pk1]/stages/[:pk2]/projects/[:pk3]
-      delete: async function (pathParams = {}, deleteData = {}, success = null, failure = defaultFailure) {
-        let url = buildPath(versionPrefix, segments, 'delete', pathParams);
+      delete: async function (pathParams = {}, deleteData = {}, success = null, failure = defaultFailure , suffix = '') {
+        let url = buildPath(versionPrefix, segments, 'delete', pathParams, suffix);
         if (deleteData && typeof deleteData === 'object') {
           deleteData = common.trimObj(deleteData);
           const query = Object.entries(deleteData)
@@ -210,14 +211,24 @@ export function generateCommonApis(versionPrefix, resources) {
       },
 
       // PUT /v1/activities/:pk1/stages/:pk2/projects/:pk3
-      update: async function (pathParams = {}, updateData = {}, success = null, failure = defaultFailure) {
-        const url = buildPath(versionPrefix, segments, 'update', pathParams);
+      update: async function (pathParams = {}, updateData = {}, success = null, failure = defaultFailure , suffix = '') {
+        const url = buildPath(versionPrefix, segments, 'update', pathParams, suffix);
         return handleRequest(ApiClient.put(url, common.trimObj(updateData)), success, failure);
       },
 
       // GET /v1/activities/:pk1/stages/:pk2/projects/:pk3
-      get: async function (pathParams = {}, success = null, failure = defaultFailure) {
-        const url = buildPath(versionPrefix, segments, 'get', pathParams);
+      get: async function (pathParams = {}, getParams = null, success = null, failure = defaultFailure , suffix = '') {
+        let url = buildPath(versionPrefix, segments, 'get', pathParams, suffix);
+        if (getParams && typeof getParams === 'object') {
+          getParams = common.trimObj(getParams);
+          const query = Object.entries(getParams)
+              .map(([k, v]) => Array.isArray(v) ?
+                  v.map(e => `${k}[]=${ubtoa(e)}`).join('&')
+                  :
+                  `${k}=${ubtoa(v)}`
+              ).join('&');
+          url += `?${query}`;
+        }
         return handleRequest(ApiClient.get(url), success, failure);
       }
     };

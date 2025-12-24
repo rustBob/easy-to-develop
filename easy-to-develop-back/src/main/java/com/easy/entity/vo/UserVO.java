@@ -1,5 +1,6 @@
 package com.easy.entity.vo;
 
+import com.easy.entity.Coupon;
 import com.easy.entity.MemberCard;
 import com.easy.entity.Role;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -106,4 +108,9 @@ public class UserVO implements Serializable {
      * 会员卡
      */
     private MemberCard memberCard;
+
+    /**
+     * 优惠券
+     */
+    private List<Coupon> couponList;
 }
