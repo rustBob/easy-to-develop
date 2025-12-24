@@ -1,6 +1,9 @@
 package com.easy.entity;
 
+import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import com.mybatisflex.core.keygen.KeyGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +19,8 @@ public class Store {
     /**
      * id
      */
-    private String id;
+    @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
+    private Long id;
 
     /**
      * 名称
@@ -42,4 +46,9 @@ public class Store {
      * 营业时间
      */
     private String hours;
+
+    /**
+     * 管理员ID
+     */
+    private Long userId;
 }

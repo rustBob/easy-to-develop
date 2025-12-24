@@ -13,7 +13,7 @@ public class SpecsVO {
     /**
      * id
      */
-    private String id;
+    private Long id;
 
     /**
      * 名称

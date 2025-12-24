@@ -1,6 +1,9 @@
 package com.easy.entity;
 
+import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import com.mybatisflex.core.keygen.KeyGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +21,8 @@ public class Locations {
     /**
      * id
      */
-    private String id;
+    @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
+    private Long id;
 
     /**
      * 联系电话
@@ -28,7 +32,7 @@ public class Locations {
     /**
      * 用户iD
      */
-    private String userId;
+    private Long userId;
 
     /**
      * 地址

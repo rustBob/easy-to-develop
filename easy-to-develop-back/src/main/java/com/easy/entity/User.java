@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
@@ -20,12 +21,12 @@ public class User{
      * 主键id
      */
     @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
-    private String id;
+    private Long id;
 
     /**
      * 角色id
      */
-    private String roleId;
+    private Long roleId;
 
     /**
      * 用户名
@@ -65,7 +66,7 @@ public class User{
     /**
      * 会员卡等级ID
      */
-    private Integer MemberCardId;
+    private Long memberCardId;
 
     /**
      * 总积分
@@ -75,7 +76,7 @@ public class User{
     /**
      * 余额
      */
-    private Integer balance;
+    private BigDecimal balance;
 
     /**
      * 是否启用

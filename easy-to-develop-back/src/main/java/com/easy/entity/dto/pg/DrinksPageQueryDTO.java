@@ -23,6 +23,6 @@ public class DrinksPageQueryDTO {
     /**
      * 种类
      */
-    private String categoryId;
+    private Long categoryId;
 
 }

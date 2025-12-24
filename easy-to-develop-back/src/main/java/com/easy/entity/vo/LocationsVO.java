@@ -16,7 +16,7 @@ public class LocationsVO {
     /**
      * id
      */
-    private String id;
+    private Long id;
 
     /**
      * 联系电话
@@ -26,7 +26,7 @@ public class LocationsVO {
     /**
      * 用户iD
      */
-    private String userId;
+    private Long userId;
 
     /**
      * 地址

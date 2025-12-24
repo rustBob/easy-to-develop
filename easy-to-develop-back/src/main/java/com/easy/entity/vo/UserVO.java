@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDateTime;
 
@@ -23,7 +24,7 @@ public class UserVO implements Serializable {
     /**
      * 主键id
      */
-    private String id;
+    private Long id;
 
     /**
      * 用户名
@@ -58,7 +59,7 @@ public class UserVO implements Serializable {
     /**
      * 会员卡等级ID
      */
-    private Integer MemberCardId;
+    private Long MemberCardId;
 
     /**
      * 总积分
@@ -68,7 +69,7 @@ public class UserVO implements Serializable {
     /**
      * 余额
      */
-    private Integer balance;
+    private BigDecimal balance;
 
     /**
      * 是否启用

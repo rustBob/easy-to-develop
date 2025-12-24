@@ -13,12 +13,12 @@ public class RoleDTO {
     /**
      * 主键
      */
-    private String id;
+    private Long id;
 
     /**
      * 父级id
      */
-    private String parentId;
+    private Long parentId;
 
     /**
      * 角色名称

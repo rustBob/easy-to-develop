@@ -21,12 +21,12 @@ public class File {
      * 文件id
      */
     @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
-    private String id;
+    private Long id;
 
     /**
      * 上传者id
      */
-    private String userId;
+    private Long userId;
 
     /**
      * 文件名

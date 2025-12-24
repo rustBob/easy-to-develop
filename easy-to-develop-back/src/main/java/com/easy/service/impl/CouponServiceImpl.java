@@ -15,14 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CouponServiceImpl extends BaseServiceImpl<Coupon, CouponDTO, CouponVO, CouponPageQueryDTO> implements CouponService {
 
-    @Resource
-    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
-
     @Autowired
-    public CouponServiceImpl(CouponMapper mapper) { super(mapper);}
+    public CouponServiceImpl(CouponMapper mapper){super(mapper);}
 
-    @Override
-    protected void beforePost(CouponDTO couponDTO) throws AppException {
-        couponDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
-    }
 }

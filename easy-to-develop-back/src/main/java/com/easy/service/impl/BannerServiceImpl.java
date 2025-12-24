@@ -16,12 +16,4 @@ import org.springframework.stereotype.Service;
 public class BannerServiceImpl extends BaseServiceImpl<Banner, BannerDTO, BannerVO, BannerPageQueryDTO> implements BannerService {
     @Autowired
     public BannerServiceImpl(BannerMapper mapper){super(mapper);}
-
-    @Resource
-    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
-
-    @Override
-    protected void beforePost(BannerDTO bannerDTO) throws AppException {
-        bannerDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
-    }
 }

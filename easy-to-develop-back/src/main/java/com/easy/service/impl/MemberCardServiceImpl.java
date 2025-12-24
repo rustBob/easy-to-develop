@@ -15,14 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberCardServiceImpl extends BaseServiceImpl<MemberCard, MemberCardDTO, MemberCardVO, MemberCardPageQueryDTO> implements MemberCardService {
 
-    @Resource
-    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
-
     @Autowired
-    public MemberCardServiceImpl(MemberCardMapper mapper) { super(mapper);}
+    public MemberCardServiceImpl(MemberCardMapper mapper){super(mapper);}
 
-    @Override
-    protected void beforePost(MemberCardDTO memberCardDTO) throws AppException {
-        memberCardDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
-    }
 }

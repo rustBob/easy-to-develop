@@ -20,17 +20,17 @@ public class AdminMenuVO implements Serializable {
     /**
      * 主键
      */
-    private String id;
+    private Long id;
 
     /**
      * 父级id
      */
-    private String parentId;
+    private Long parentId;
 
     /**
      * 所属角色id
      */
-    private String roleId;
+    private Long roleId;
 
     /**
      * 菜单名称

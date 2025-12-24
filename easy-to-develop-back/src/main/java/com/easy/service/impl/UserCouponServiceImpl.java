@@ -28,8 +28,7 @@ import java.time.temporal.ChronoUnit;
 @NoArgsConstructor
 public class UserCouponServiceImpl extends BaseServiceImpl<UserCoupon, UserCouponDTO, UserCouponVO, UserCouponPageQueryDTO> implements UserCouponService {
 
-    @Resource
-    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
+
 
     @Resource
     private UserServiceImpl userService;
@@ -57,26 +56,8 @@ public class UserCouponServiceImpl extends BaseServiceImpl<UserCoupon, UserCoupo
             throw new AppException(Status.COUPON_TYPE_NOT_EXIST);
         }
 
-        userCouponDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
     }
 
 
-    @Override
-    protected void beforeUpdate(UserCouponDTO userCouponDTO) throws AppException {
-        UserCoupon coupon = getOne(QueryWrapper.create().eq(UserCoupon::getId,userCouponDTO.getId()));
-        if (coupon == null) {
-            log.error("用户不存在此优惠券");
-            throw new AppException(Status.COUPON_NOT_FOUND);
-        }
-        BeanUtils.copyProperties(coupon,userCouponDTO);
-        LocalDateTime expireTime = userCouponDTO.getCreateTime().plusSeconds(userCouponDTO.getExpiration());
-        LocalDateTime now = LocalDateTime.now();
-        if(now.isAfter(expireTime)){
-            log.error("优惠券已过期");
-            throw new AppException(Status.OUT_OF_TIME);
-        }
 
-
-        userCouponDTO.setIsValid(0);
-    }
 }

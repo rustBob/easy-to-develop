@@ -17,10 +17,10 @@ public class OrderItemsPageQueryDTO {
     /**
      * 饮品ID
      */
-    private String drinkId;
+    private Long drinkId;
 
     /**
      * 小料ID
      */
-    private String addInsId;
+    private Long addInsId;
 }

@@ -17,12 +17,12 @@ public class OrderItemsVO {
     /**
      * id
      */
-    private String id;
+    private Long id;
 
     /**
      * 饮品ID
      */
-    private String drinkId;
+    private Long drinkId;
 
     /**
      * 饮品数量
@@ -32,7 +32,7 @@ public class OrderItemsVO {
     /**
      * 小料ID
      */
-    private Integer addInsId;
+    private Long addInsId;
 
     /**
      * 小料数量

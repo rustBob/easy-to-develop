@@ -15,14 +15,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class AddInsServiceImpl extends BaseServiceImpl<AddIns, AddInsDTO, AddInsVO, AddInsPageQueryDTO> implements AddInsService {
 
-    @Resource
-    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
+
 
     @Autowired
     public AddInsServiceImpl(AddInsMapper mapper) {super(mapper);}
 
-    @Override
-    protected void beforePost(AddInsDTO addInsDTO) throws AppException {
-        addInsDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
-    }
+
 }

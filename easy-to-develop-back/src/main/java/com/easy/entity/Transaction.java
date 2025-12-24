@@ -1,7 +1,10 @@
 package com.easy.entity;
 
 import com.mybatisflex.annotation.Column;
+import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import com.mybatisflex.core.keygen.KeyGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,19 +23,20 @@ public class Transaction {
     /**
      * ID
      */
-    private String id;
+    @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
+    private Long id;
     /**
      * 订单ID
      */
-    private String orderId;
+    private Long orderId;
     /**
      * 用户ID
      */
-    private String userId;
+    private Long userId;
     /**
      * 优惠券ID
      */
-    private String couponId;
+    private Long couponId;
     /**
      * 总价
      */

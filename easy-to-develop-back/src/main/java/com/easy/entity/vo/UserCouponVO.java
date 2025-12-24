@@ -16,22 +16,18 @@ public class UserCouponVO {
     /**
      * id
      */
-    private String id;
+    private Long id;
 
     /**
      * 用户ID
      */
-    private String userId;
+    private Long userId;
 
     /**
      * 优惠券ID
      */
-    private String couponId;
+    private Long couponId;
 
-    /**
-     * 是否有效
-     */
-    private Integer isValid;
 
     /**
      * 过期时间

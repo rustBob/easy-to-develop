@@ -19,14 +19,7 @@ import org.springframework.stereotype.Service;
 @NoArgsConstructor
 public class SpecsServiceImpl extends BaseServiceImpl<Specs, SpecsDTO, SpecsVO, SpecsPageQueryDTO> implements SpecsService {
 
-    @Resource
-    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
-
     @Autowired
-    public SpecsServiceImpl(SpecsMapper mapper) {super(mapper);}
+    public SpecsServiceImpl(SpecsMapper mapper){super(mapper);}
 
-    @Override
-    protected void beforePost(SpecsDTO specsDTO) throws AppException {
-        specsDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
-    }
 }

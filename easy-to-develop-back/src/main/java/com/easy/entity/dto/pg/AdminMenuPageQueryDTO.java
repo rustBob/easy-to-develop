@@ -17,7 +17,7 @@ public class AdminMenuPageQueryDTO {
     /**
      * 父级id
      */
-    private String parentId;
+    private Long parentId;
 
     /**
      * 菜单名称

@@ -24,7 +24,7 @@ public class UserPageQueryDTO{
     /**
      * 主键id
      */
-    private String id;
+    private Long id;
 
     /**
      * 用户名

@@ -12,7 +12,6 @@ import com.easy.mapper.AddInsMapper;
 import com.easy.mapper.DrinksMapper;
 import com.easy.mapper.OrderItemsMapper;
 import com.easy.service.OrderItemsService;
-import com.easy.util.SnowflakeDistributeIdUtil;
 import com.mybatisflex.core.query.QueryWrapper;
 import jakarta.annotation.Resource;
 import lombok.NoArgsConstructor;
@@ -26,9 +25,6 @@ import org.springframework.stereotype.Service;
 @NoArgsConstructor
 public class OrderItemsServiceImpl extends BaseServiceImpl<OrderItems, OrderItemsDTO, OrderItemsVO, OrderItemsPageQueryDTO> implements OrderItemsService {
     @Resource
-    private SnowflakeDistributeIdUtil snowflakeDistributeIdUtil;
-
-    @Resource
     private DrinksServiceImpl drinksService;
 
     @Resource
@@ -39,18 +35,24 @@ public class OrderItemsServiceImpl extends BaseServiceImpl<OrderItems, OrderItem
 
     @Override
     protected void beforePost(OrderItemsDTO orderItemsDTO) throws AppException {
-        String drinkId = orderItemsDTO.getDrinkId();
-        String addInsId = orderItemsDTO.getAddInsId();
+        Long drinkId = orderItemsDTO.getDrinkId();
 
         Drinks drink = drinksService.getOne(QueryWrapper.create().eq(Drinks::getId,drinkId));
-        AddIns addIns = addInsService.getOne(QueryWrapper.create().eq(AddIns::getId,addInsId));
-
-        if (drink == null || addIns == null) {
-            log.error("drink or add_ins is null");
+        if (drink == null) {
+            log.error("未查询到对应饮品");
             throw new AppException(Status.PRODUCT_NOT_FOUND);
         }
 
-
-        orderItemsDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
+        if(orderItemsDTO.getIfAdd()==1) {
+            Long addInsId = orderItemsDTO.getAddInsId();
+            AddIns addIns = addInsService.getOne(QueryWrapper.create().eq(AddIns::getId,addInsId));
+            if (addIns == null) {
+                log.error("未查询到对应小料");
+                throw new AppException(Status.PRODUCT_NOT_FOUND);
+            }
+        }else {
+            orderItemsDTO.setAddInsId(0L);
+            orderItemsDTO.setAddInsQuantity(0);
+        }
     }
 }

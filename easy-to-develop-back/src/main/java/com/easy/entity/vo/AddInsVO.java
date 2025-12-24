@@ -16,7 +16,7 @@ public class AddInsVO {
     /**
      * ID
      */
-    private String id;
+    private Long id;
 
     /**
      * 名称

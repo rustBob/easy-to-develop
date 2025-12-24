@@ -16,7 +16,7 @@ public class CouponDTO {
     /**
      * ID
      */
-    private String id;
+    private Long id;
 
     /**
      * 优惠类型

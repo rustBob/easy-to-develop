@@ -20,7 +20,7 @@ public class DrinksVO {
     /**
      * ID
      */
-    private String id;
+    private Long id;
 
     /**
      * 名称
@@ -35,7 +35,7 @@ public class DrinksVO {
     /**
      * 种类
      */
-    private Integer categoryId;
+    private Long categoryId;
 
     /**
      * 图片路径

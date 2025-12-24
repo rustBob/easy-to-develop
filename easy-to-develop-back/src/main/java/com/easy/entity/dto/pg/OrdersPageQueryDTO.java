@@ -3,7 +3,7 @@ package com.easy.entity.dto.pg;
 import lombok.Data;
 
 @Data
-public class LocationsPageQueryDTO {
+public class OrdersPageQueryDTO {
     /**
      * 页码
      */
@@ -15,12 +15,17 @@ public class LocationsPageQueryDTO {
     private Integer pageSize;
 
     /**
-     * 用户iD
+     * id
+     */
+    private Long id;
+
+    /**
+     * 用户ID
      */
     private Long userId;
 
     /**
-     * 地址
+     * 商店ID
      */
-    private String position;
+    private Long storeId;
 }

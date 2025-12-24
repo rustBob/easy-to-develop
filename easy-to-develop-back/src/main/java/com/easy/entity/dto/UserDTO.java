@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.sql.Date;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -13,12 +16,12 @@ public class UserDTO{
     /**
      * 主键id
      */
-    private String id;
+    private Long id;
 
     /**
      * 角色id
      */
-    private String roleId;
+    private Long roleId;
 
     /**
      * 用户名
@@ -49,11 +52,25 @@ public class UserDTO{
      * 电话
      */
     private String phone;
+    /**
+     * 生日
+     */
+    private Date birthday;
 
     /**
      * 会员卡ID
      */
-    private String memberCardID;
+    private Long memberCardID;
+
+    /**
+     * 总积分
+     */
+    private Integer totalPoints;
+
+    /**
+     * 余额
+     */
+    private BigDecimal balance;
 
     /**
      * 是否启用

@@ -18,6 +18,7 @@ import com.mybatisflex.core.query.QueryWrapper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
@@ -53,7 +54,7 @@ public class AuthServiceImpl implements AuthService {
         // 解密密码
         String privateKey;
         try {
-            privateKey = AESKeyGenerator.generateKey(AESKeyGenerator.generateSaltByLong(Long.parseLong(u.getId())),
+            privateKey = AESKeyGenerator.generateKey(AESKeyGenerator.generateSaltByLong(Long.parseLong(String.valueOf(u.getId()))),
                     saTokenConfiguration.getSecretKey());
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             throw new AppException(Status.FAILED_TO_GET_PRIVATE_KEY);
@@ -122,7 +123,7 @@ public class AuthServiceImpl implements AuthService {
         if(userDTO.getPhone() != null && !userDTO.getPhone().isEmpty()){
             userDTO.setUsername("用户" + userDTO.getPhone());
         }
-        userDTO.setRoleId(String.valueOf(1));
+        userDTO.setRoleId(1L);
         userService.post(userDTO);
     }
 }

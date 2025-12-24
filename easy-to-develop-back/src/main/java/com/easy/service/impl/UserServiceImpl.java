@@ -18,9 +18,11 @@ import com.mybatisflex.core.query.QueryWrapper;
 import jakarta.annotation.Resource;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserDTO, UserVO, User
     }
 
 
+
     /**
      * 添加用户前的逻辑（密码加密）
      * @param userDTO 用户信息
@@ -57,7 +60,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserDTO, UserVO, User
         // 加密
         // 1.获取密钥
         String id = snowflakeDistributeIdUtil.nextId().toString();
-        userDTO.setId(id);
+        userDTO.setId(Long.valueOf(id));
 
         byte[] salt = AESKeyGenerator.generateSaltByLong(Long.parseLong(id));
         String privateKey;
@@ -81,7 +84,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserDTO, UserVO, User
         if(password != null && !password.isEmpty()){
             // 加密
             // 1.获取密钥
-            byte[] salt = AESKeyGenerator.generateSaltByLong(Long.parseLong(u.getId()));
+            byte[] salt = AESKeyGenerator.generateSaltByLong(Long.parseLong(String.valueOf(u.getId())));
             String privateKey;
 
             try {
@@ -95,7 +98,6 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserDTO, UserVO, User
             userDTO.setPassword(SaSecureUtil.aesEncrypt(privateKey, userDTO.getPassword()));
         }
     }
-
     @Override
     protected List<UserVO> afterGet(List<User> entities) throws AppException {
         List<UserVO> vos = new ArrayList<>();

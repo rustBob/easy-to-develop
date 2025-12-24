@@ -1,6 +1,9 @@
 package com.easy.entity;
 
+import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import com.mybatisflex.core.keygen.KeyGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,12 +21,13 @@ public class OrderItems {
     /**
      * id
      */
-    private String id;
+    @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
+    private Long id;
 
     /**
      * 饮品ID
      */
-    private String drinkId;
+    private Long drinkId;
 
     /**
      * 饮品数量
@@ -31,9 +35,14 @@ public class OrderItems {
     private Integer drinksQuantity;
 
     /**
+     * 是否添加小料
+     */
+    private Integer ifAdd;
+
+    /**
      * 小料ID
      */
-    private String addInsId;
+    private Long addInsId;
 
     /**
      * 小料数量

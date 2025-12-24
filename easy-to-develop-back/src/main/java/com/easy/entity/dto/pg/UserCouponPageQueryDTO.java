@@ -17,7 +17,7 @@ public class UserCouponPageQueryDTO {
     /**
      * 用户ID
      */
-    private String userId;
+    private Long userId;
 
     /**
      * 优惠券ID

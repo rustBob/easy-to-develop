@@ -2,7 +2,9 @@ package com.easy.entity;
 
 import com.mybatisflex.annotation.Column;
 import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import com.mybatisflex.core.keygen.KeyGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,23 +22,18 @@ public class UserCoupon {
     /**
      * id
      */
-    @Id
-    private String id;
+    @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
+    private Long id;
 
     /**
      * 用户ID
      */
-    private String userId;
+    private Long userId;
 
     /**
      * 优惠券ID
      */
-    private String couponId;
-
-    /**
-     * 是否有效
-     */
-    private Integer isValid;
+    private Long couponId;
 
     /**
      * 过期时间

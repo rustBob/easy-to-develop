@@ -20,7 +20,7 @@ public class LoginVO implements Serializable {
     /**
      * 用户id
      */
-    private String id;
+    private Long id;
 
     /**
      * 用户名

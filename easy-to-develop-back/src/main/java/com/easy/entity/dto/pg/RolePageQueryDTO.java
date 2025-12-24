@@ -17,5 +17,5 @@ public class RolePageQueryDTO {
     /**
      * 父级id
      */
-    private String parentId;
+    private Long parentId;
 }

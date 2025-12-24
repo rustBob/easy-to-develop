@@ -16,22 +16,28 @@ public class OrderItemsDTO {
     /**
      * id
      */
-    private String id;
+    private Long id;
 
     /**
      * 饮品ID
      */
-    private String drinkId;
+    private Long drinkId;
 
     /**
      * 饮品数量
      */
     private Integer drinksQuantity;
 
+
+    /**
+     * 是否添加小料
+     */
+    private Integer ifAdd;
+
     /**
      * 小料ID
      */
-    private String addInsId;
+    private Long addInsId;
 
     /**
      * 小料数量

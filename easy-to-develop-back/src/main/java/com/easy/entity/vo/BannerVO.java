@@ -13,7 +13,7 @@ public class BannerVO {
     /**
      * id
      */
-    private String id;
+    private Long id;
 
     /**
      * 图片路径

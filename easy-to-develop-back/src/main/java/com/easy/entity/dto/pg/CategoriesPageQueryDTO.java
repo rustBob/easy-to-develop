@@ -17,7 +17,7 @@ public class CategoriesPageQueryDTO {
     /**
      * ID
      */
-    private String id;
+    private Long id;
 
     /**
      * 名称

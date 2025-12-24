@@ -51,8 +51,8 @@ public class FileServiceImpl extends BaseServiceImpl<File, FileDTO, FileVO, File
 
         File f = new File();
         BeanUtils.copyProperties(data, f);
-        f.setUserId(userId);
-        f.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
+        f.setUserId(Long.valueOf(userId));
+        f.setId(snowflakeDistributeIdUtil.nextId());
         URL uploadUrl = getUploadUrl(data);
 
         save(f);
