@@ -1,6 +1,8 @@
 package com.easy.entity.vo;
 
 
+import com.easy.entity.OrderItems;
+import com.mybatisflex.annotation.RelationOneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -116,5 +119,5 @@ public class OrdersVO {
      */
     private String remarks;
 
-
+    private List<OrderItems> orderItems;
 }

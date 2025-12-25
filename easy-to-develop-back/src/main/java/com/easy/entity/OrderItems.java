@@ -40,24 +40,24 @@ public class OrderItems {
     private Integer drinksQuantity;
 
     /**
-     * 是否添加小料
+     * 饮品名称
      */
-    private Integer ifAdd;
+    private String name;
 
     /**
-     * 小料ID
+     * 饮品图片
      */
-    private String addInsId;
+    private String image;
 
     /**
-     * 小料数量
+     * 饮品描述
      */
-    private Integer addInsQuantity;
+    private String description;
 
     /**
-     * 总价
+     * 价格
      */
-    private BigDecimal totalPrice;
+    private BigDecimal price;
 
     /**
      * 饮品规格选项

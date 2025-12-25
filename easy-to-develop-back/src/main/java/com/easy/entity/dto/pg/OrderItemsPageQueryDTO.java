@@ -2,6 +2,8 @@ package com.easy.entity.dto.pg;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 public class OrderItemsPageQueryDTO {
     /**
@@ -25,7 +27,22 @@ public class OrderItemsPageQueryDTO {
     private String drinkId;
 
     /**
-     * 小料ID
+     * 饮品名称
      */
-    private String addInsId;
+    private String name;
+
+    /**
+     * 饮品图片
+     */
+    private String image;
+
+    /**
+     * 饮品描述
+     */
+    private String description;
+
+    /**
+     * 总价
+     */
+    private BigDecimal price;
 }

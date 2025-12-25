@@ -33,26 +33,25 @@ public class OrderItemsDTO {
      */
     private Integer drinksQuantity;
 
+    /**
+     * 饮品名称
+     */
+    private String name;
 
     /**
-     * 是否添加小料
+     * 饮品图片
      */
-    private Integer ifAdd;
+    private String image;
 
     /**
-     * 小料ID
+     * 饮品描述
      */
-    private String addInsId;
-
-    /**
-     * 小料数量
-     */
-    private Integer addInsQuantity;
+    private String description;
 
     /**
      * 总价
      */
-    private BigDecimal totalPrice;
+    private BigDecimal price;
 
     /**
      * 饮品规格选项

@@ -35,19 +35,24 @@ public class OrderItemsVO {
     private Integer drinksQuantity;
 
     /**
-     * 小料ID
+     * 饮品名称
      */
-    private String addInsId;
+    private String name;
 
     /**
-     * 小料数量
+     * 饮品图片
      */
-    private Integer addInsQuantity;
+    private String image;
+
+    /**
+     * 饮品描述
+     */
+    private String description;
 
     /**
      * 总价
      */
-    private BigDecimal totalPrice;
+    private BigDecimal price;
 
     /**
      * 饮品规格选项
