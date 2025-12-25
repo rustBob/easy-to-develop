@@ -17,7 +17,7 @@ public class CouponVO {
     /**
      * ID
      */
-    private Long id;
+    private String id;
 
     /**
      * 优惠类型
