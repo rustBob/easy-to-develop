@@ -10,7 +10,6 @@ export const globalApi = {
       'roles',
       'drinks',
       'categories',
-      'add-ins',
       'coupons',
       'specs',
       'banners',
