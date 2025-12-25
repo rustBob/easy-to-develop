@@ -285,7 +285,7 @@ const rules = {
 }
 
 onMounted(() => {
-  globalApi.roles.get(null, (res) => {
+  globalApi.roles.get(null, null, (res) => {
     roles.value = toTrees(res);
   })
 });

@@ -1,5 +1,7 @@
 package com.easy.entity.vo;
 
+import com.easy.entity.User;
+import com.mybatisflex.annotation.RelationOneToOne;
 import com.mybatisflex.annotation.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,5 +48,10 @@ public class StoreVO {
      * 管理员ID
      */
     private String userId;
+
+    /**
+     * 管理员
+     */
+    private User admin;
 }
 

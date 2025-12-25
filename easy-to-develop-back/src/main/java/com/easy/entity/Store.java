@@ -2,6 +2,7 @@ package com.easy.entity;
 
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
+import com.mybatisflex.annotation.RelationOneToOne;
 import com.mybatisflex.annotation.Table;
 import com.mybatisflex.core.keygen.KeyGenerators;
 import lombok.AllArgsConstructor;
@@ -51,4 +52,10 @@ public class Store {
      * 管理员ID
      */
     private String userId;
+
+    /**
+     * 管理员
+     */
+    @RelationOneToOne(targetField = "id", selfField = "userId")
+    private User admin;
 }

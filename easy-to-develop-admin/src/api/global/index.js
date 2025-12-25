@@ -19,7 +19,8 @@ export const globalApi = {
       'orders',
       'locations',
       'stores',
-      'user-coupons'
+      'user-coupons',
+      'store-goods',
     ]
 
     // 动态注册 api 方法

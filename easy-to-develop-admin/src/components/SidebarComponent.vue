@@ -72,8 +72,8 @@ const handleMenuSelect = () => {
 };
 
 const handleLogout = () => {
-  globalApi.auth.logout({ id: store.get('user').id }, (res) => {
-    console.log(res);
+  globalApi.auth.logout({ id: store.get('user').id }, () => {
+    store.remove('store');
     clearToken();
   }, (error) => {
     console.log(error);

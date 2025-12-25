@@ -14,8 +14,10 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
+import { globalApi } from '@/api/global';
 import Header from '@/components/HeaderComponent.vue';
 import Sidebar from '@/components/SidebarComponent.vue';
+import Store from '@/store'
 
 const route = useRoute();
 const showLayout = computed(() => !route.meta.hideLayout);
@@ -23,6 +25,7 @@ const showLayout = computed(() => !route.meta.hideLayout);
 const screenWidth = ref(window.innerWidth);
 const isSidebarOpen = ref(screenWidth.value > 1024);
 const isMobile = computed(() => screenWidth.value <= 1024);
+const userInfo = ref(null)
 
 const toggleSidebar = () => {
   isSidebarOpen.value = !isSidebarOpen.value;
@@ -39,6 +42,12 @@ const handleResize = () => {
 
 onMounted(() => {
   window.addEventListener('resize', handleResize);
+  userInfo.value = Store.get('user');
+  globalApi['stores'].get(null, { userId: userInfo.value.id }, (res) => {
+    if(Array.isArray(res) && res.length > 0) {
+      Store.set('store', res[0]);
+    }
+  });
 });
 
 onUnmounted(() => {

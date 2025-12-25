@@ -57,7 +57,6 @@ router.beforeEach(async (to, from, next) => {
     next({ name: 'Login' });
     return;
   }
-
   if (checkObj === admin) {
     const r = await admin.dynamicRoute(router, to);
     if (r) {
