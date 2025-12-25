@@ -15,7 +15,7 @@ public class StoreVO {
     /**
      * id
      */
-    private Long id;
+    private String id;
 
     /**
      * 名称
@@ -45,6 +45,6 @@ public class StoreVO {
     /**
      * 管理员ID
      */
-    private Long userId;
+    private String userId;
 }
 

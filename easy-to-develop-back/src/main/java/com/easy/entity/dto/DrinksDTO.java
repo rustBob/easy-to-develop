@@ -16,7 +16,7 @@ public class DrinksDTO {
     /**
      * id
      */
-    private Long id;
+    private String id;
 
     /**
      * 名称

@@ -20,7 +20,7 @@ public class Categories {
      * ID
      */
     @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
-    private Long id;
+    private String id;
 
     /**
      * 名称

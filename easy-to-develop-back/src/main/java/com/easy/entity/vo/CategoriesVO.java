@@ -13,7 +13,7 @@ public class CategoriesVO {
     /**
      * ID
      */
-    private Long id;
+    private String id;
 
     /**
      * 名称

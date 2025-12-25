@@ -16,7 +16,7 @@ public class MemberCardDTO {
     /**
      * id
      */
-    private Long id;
+    private String id;
 
     /**
      * 会员等级

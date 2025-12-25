@@ -24,7 +24,7 @@ public class MemberCard {
      * id
      */
     @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
-    private Long id;
+    private String id;
 
     /**
      * 会员等级

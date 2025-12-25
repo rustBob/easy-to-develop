@@ -20,7 +20,7 @@ public class Store {
      * id
      */
     @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
-    private Long id;
+    private String id;
 
     /**
      * 名称
@@ -50,5 +50,5 @@ public class Store {
     /**
      * 管理员ID
      */
-    private Long userId;
+    private String userId;
 }

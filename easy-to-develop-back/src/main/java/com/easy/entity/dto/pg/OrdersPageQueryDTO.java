@@ -17,15 +17,15 @@ public class OrdersPageQueryDTO {
     /**
      * id
      */
-    private Long id;
+    private String id;
 
     /**
      * 用户ID
      */
-    private Long userId;
+    private String userId;
 
     /**
      * 商店ID
      */
-    private Long storeId;
+    private String storeId;
 }

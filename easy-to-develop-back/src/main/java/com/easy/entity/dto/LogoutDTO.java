@@ -13,5 +13,5 @@ public class LogoutDTO {
     /**
      * 用户id
      */
-    private Long id;
+    private String id;
 }

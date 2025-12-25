@@ -21,7 +21,7 @@ public class Drinks {
      * ID
      */
     @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
-    private Long id;
+    private String id;
 
     /**
      * 名称
@@ -36,7 +36,7 @@ public class Drinks {
     /**
      * 种类
      */
-    private Long categoryId;
+    private String categoryId;
 
     /**
      * 图片路径

@@ -22,7 +22,7 @@ public class Locations {
      * id
      */
     @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
-    private Long id;
+    private String id;
 
     /**
      * 联系电话
@@ -32,7 +32,7 @@ public class Locations {
     /**
      * 用户iD
      */
-    private Long userId;
+    private String userId;
 
     /**
      * 收货人

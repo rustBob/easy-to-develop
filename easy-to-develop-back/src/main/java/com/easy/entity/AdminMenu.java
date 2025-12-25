@@ -18,17 +18,17 @@ public class AdminMenu {
      * 主键
      */
     @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
-    private Long id;
+    private String id;
 
     /**
      * 父级id
      */
-    private Long parentId;
+    private String parentId;
 
     /**
      * 所属角色id
      */
-    private Long roleId;
+    private String roleId;
 
     /**
      * 菜单名称

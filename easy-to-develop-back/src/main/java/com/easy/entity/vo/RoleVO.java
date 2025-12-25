@@ -19,12 +19,12 @@ public class RoleVO implements Serializable {
     /**
      * 主键
      */
-    private Long id;
+    private String id;
 
     /**
      * 父级id
      */
-    private Long parentId;
+    private String parentId;
 
     /**
      * 角色名称

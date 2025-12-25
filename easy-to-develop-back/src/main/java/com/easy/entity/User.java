@@ -22,12 +22,12 @@ public class User{
      * 主键id
      */
     @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
-    private Long id;
+    private String id;
 
     /**
      * 角色id
      */
-    private Long roleId;
+    private String roleId;
 
     /**
      * 用户名

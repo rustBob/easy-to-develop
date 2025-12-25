@@ -22,12 +22,12 @@ public class OrderItems {
      * id
      */
     @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
-    private Long id;
+    private String id;
 
     /**
      * 饮品ID
      */
-    private Long drinkId;
+    private String drinkId;
 
     /**
      * 饮品数量
@@ -42,7 +42,7 @@ public class OrderItems {
     /**
      * 小料ID
      */
-    private Long addInsId;
+    private String addInsId;
 
     /**
      * 小料数量

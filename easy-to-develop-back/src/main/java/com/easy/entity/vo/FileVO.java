@@ -15,12 +15,12 @@ public class FileVO {
     /**
      * 文件id
      */
-    private Long id;
+    private String id;
 
     /**
      * 上传者id
      */
-    private Long userId;
+    private String userId;
 
     /**
      * 文件名

@@ -24,19 +24,19 @@ public class Transaction {
      * ID
      */
     @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
-    private Long id;
+    private String id;
     /**
      * 订单ID
      */
-    private Long orderId;
+    private String orderId;
     /**
      * 用户ID
      */
-    private Long userId;
+    private String userId;
     /**
      * 优惠券ID
      */
-    private Long couponId;
+    private String couponId;
     /**
      * 总价
      */

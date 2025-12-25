@@ -14,7 +14,7 @@ public class BannerDTO {
     /**
      * id
      */
-    private Long id;
+    private String id;
 
     /**
      * 图片路径

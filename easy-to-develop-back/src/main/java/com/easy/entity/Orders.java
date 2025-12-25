@@ -21,7 +21,7 @@ public class Orders {
      * id
      */
     @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
-    private Long id;
+    private String id;
 
     /**
      * 订单类型
@@ -31,12 +31,12 @@ public class Orders {
     /**
      * 用户ID
      */
-    private Long userId;
+    private String userId;
 
     /**
      * 商店ID
      */
-    private Long storeId;
+    private String storeId;
 
     /**
      * 订单具体商品ID
@@ -46,12 +46,12 @@ public class Orders {
     /**
      * 优惠券ID
      */
-    private Long couponId;
+    private String couponId;
 
     /**
      * 地址ID
      */
-    private Long locationId;
+    private String locationId;
 
     /**
      * 订单状态(1：制作中，2：制作完成，3：外送中/等待取餐中，4：订单完成，0：订单取消)

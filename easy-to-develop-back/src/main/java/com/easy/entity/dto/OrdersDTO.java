@@ -30,7 +30,7 @@ public class OrdersDTO {
     /**
      * 商店ID
      */
-    private Long storeId;
+    private String storeId;
 
     /**
      * 用户地址
@@ -40,7 +40,7 @@ public class OrdersDTO {
     /**
      * 优惠券ID
      */
-    private Long couponId;
+    private String couponId;
 
 
     /**

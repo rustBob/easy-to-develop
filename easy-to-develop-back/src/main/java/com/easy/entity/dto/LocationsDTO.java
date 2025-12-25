@@ -16,7 +16,7 @@ public class LocationsDTO {
     /**
      * id
      */
-    private Long id;
+    private String id;
 
     /**
      * 收货人
@@ -36,7 +36,7 @@ public class LocationsDTO {
     /**
      * 用户iD
      */
-    private Long userId;
+    private String userId;
 
     /**
      * 地址

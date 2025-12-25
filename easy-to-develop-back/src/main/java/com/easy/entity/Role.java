@@ -19,12 +19,12 @@ public class Role {
      * 主键
      */
     @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
-    private Long id;
+    private String id;
 
     /**
      * 父级id
      */
-    private Long parentId;
+    private String parentId;
 
     /**
      * 角色名称

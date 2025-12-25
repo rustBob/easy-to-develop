@@ -17,7 +17,7 @@ public class LocationsPageQueryDTO {
     /**
      * 用户iD
      */
-    private Long userId;
+    private String userId;
 
     /**
      * 收货人

@@ -25,7 +25,7 @@ public class OrdersVO {
     /**
      * id
      */
-    private Long id;
+    private String id;
 
     /**
      * 订单类型
@@ -35,7 +35,7 @@ public class OrdersVO {
     /**
      * 用户ID
      */
-    private Long userId;
+    private String userId;
 
     /**
      * 用户名称
@@ -45,7 +45,7 @@ public class OrdersVO {
     /**
      * 商店ID
      */
-    private Long storeId;
+    private String storeId;
 
     /**
      * 商店名称

@@ -15,7 +15,7 @@ public class FileDTO {
     /**
      * 文件id
      */
-    private Long id;
+    private String id;
 
     /**
      * 文件名

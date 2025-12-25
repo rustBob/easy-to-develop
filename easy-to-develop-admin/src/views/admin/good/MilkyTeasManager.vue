@@ -153,7 +153,7 @@ const rules = {
 
 
 onMounted(() => {
-  globalApi.categories.get(null, (res) => {
+  globalApi.categories.get(null, null, (res) => {
     categories.value = res;
   })
 });

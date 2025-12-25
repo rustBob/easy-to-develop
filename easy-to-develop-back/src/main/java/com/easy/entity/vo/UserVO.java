@@ -26,7 +26,7 @@ public class UserVO implements Serializable {
     /**
      * 主键id
      */
-    private Long id;
+    private String id;
 
     /**
      * 用户名

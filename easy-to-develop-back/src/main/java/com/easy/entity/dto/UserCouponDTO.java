@@ -16,17 +16,17 @@ public class UserCouponDTO {
     /**
      * id
      */
-    private Long id;
+    private String id;
 
     /**
      * 用户ID
      */
-    private Long userId;
+    private String userId;
 
     /**
      * 优惠券ID
      */
-    private Long couponId;
+    private String couponId;
 
     /**
      * 过期时间

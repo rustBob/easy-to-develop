@@ -16,12 +16,12 @@ public class UserDTO{
     /**
      * 主键id
      */
-    private Long id;
+    private String id;
 
     /**
      * 角色id
      */
-    private Long roleId;
+    private String roleId;
 
     /**
      * 用户名

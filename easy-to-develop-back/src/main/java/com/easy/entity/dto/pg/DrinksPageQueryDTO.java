@@ -23,7 +23,7 @@ public class DrinksPageQueryDTO {
     /**
      * 种类
      */
-    private Long categoryId;
+    private String categoryId;
 
     /**
      * 商品库存

@@ -13,7 +13,7 @@ public class SpecsDTO {
     /**
      * id
      */
-    private Long id;
+    private String id;
 
     /**
      * 名称
