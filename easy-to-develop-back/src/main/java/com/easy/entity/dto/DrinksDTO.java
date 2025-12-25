@@ -42,4 +42,9 @@ public class DrinksDTO {
      * 描述
      */
     private String description;
+
+    /**
+     * 门店id
+     */
+    private String storeId;
 }

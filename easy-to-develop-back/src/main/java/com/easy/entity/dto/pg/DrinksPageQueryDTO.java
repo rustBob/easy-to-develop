@@ -25,4 +25,9 @@ public class DrinksPageQueryDTO {
      */
     private String categoryId;
 
+    /**
+     * 门店id
+     */
+    private String storeId;
+
 }
