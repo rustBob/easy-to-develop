@@ -1,13 +1,6 @@
 package com.easy.entity.vo;
 
-import com.easy.entity.OrderItems;
-import com.easy.entity.Store;
-import com.easy.entity.User;
-import com.easy.entity.UserCoupon;
-import com.mybatisflex.annotation.Column;
-import com.mybatisflex.annotation.RelationManyToOne;
-import com.mybatisflex.annotation.RelationOneToMany;
-import com.mybatisflex.annotation.RelationOneToOne;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -56,6 +49,11 @@ public class OrdersVO {
      * 商店地址
      */
     private String storeAddress;
+
+    /**
+     * 外送地址
+     */
+    private String address;
 
 
     /**

@@ -1,7 +1,6 @@
 package com.easy.service.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
-import com.easy.common.Result;
 import com.easy.common.Status;
 import com.easy.common.exception.AppException;
 import com.easy.entity.*;
@@ -10,14 +9,12 @@ import com.easy.entity.dto.OrdersDTO;
 import com.easy.entity.dto.UserDTO;
 import com.easy.entity.dto.pg.OrdersPageQueryDTO;
 import com.easy.entity.vo.OrdersVO;
-import com.easy.mapper.OrderItemsMapper;
 import com.easy.mapper.OrdersMapper;
 import com.easy.mapper.UserMapper;
 import com.easy.service.OrderItemsService;
 import com.easy.service.OrdersService;
 import com.easy.util.SnowflakeDistributeIdUtil;
 import com.mybatisflex.core.query.QueryWrapper;
-import com.mybatisflex.spring.service.impl.ServiceImpl;
 import jakarta.annotation.Resource;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,14 +23,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 @Slf4j
 @Service
 @NoArgsConstructor
-//public class OrdersServiceImpl extends ServiceImpl<OrdersMapper,Orders> implements OrdersService {
 
 public class OrdersServiceImpl extends BaseServiceImpl<Orders,OrdersDTO, OrdersVO, OrdersPageQueryDTO> implements OrdersService {
 
@@ -100,7 +95,6 @@ public class OrdersServiceImpl extends BaseServiceImpl<Orders,OrdersDTO, OrdersV
                 .userId(user.getId())
                 .storeId(ordersDTO.getStoreId())
                 .couponId(ordersDTO.getCouponId())
-                .locationId(ordersDTO.getLocationId())
                 .totalAmount(ordersDTO.getTotalAmount())
                 .finalAmount(ordersDTO.getFinalAmount())
                 .levelDiscountAmount(ordersDTO.getLevelDiscountAmount())
@@ -113,6 +107,11 @@ public class OrdersServiceImpl extends BaseServiceImpl<Orders,OrdersDTO, OrdersV
                 .couponDiscountAmount(ordersDTO.getCouponDiscountAmount())
                 .status(1)
                 .build();
+
+        if (ordersDTO.getOrderType().equals("pickup"))
+            orders.setLocationId("0");
+        else
+            orders.setLocationId(ordersDTO.getLocationId());
 
 
         save(orders);
@@ -156,6 +155,13 @@ public class OrdersServiceImpl extends BaseServiceImpl<Orders,OrdersDTO, OrdersV
         } else {
             ordersVO.setStoreName("未知商店"); // 给默认值
             ordersVO.setStoreAddress("未知地址");
+            log.warn("订单{}的关联商店不存在（storeId={}）", orders.getId(), orders.getStoreId());
+        }
+
+        if (orders.getLocations() != null) {
+            ordersVO.setAddress(orders.getLocations().getPosition()+"\n"+orders.getLocations().getDetail());
+        } else {
+            ordersVO.setAddress("该订单为自提");
             log.warn("订单{}的关联商店不存在（storeId={}）", orders.getId(), orders.getStoreId());
         }
 
