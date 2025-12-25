@@ -5,6 +5,7 @@
     :data-pk-names="['id']"
     :add-rules="rules"
     :update-rules="rules"
+    :preprocess-data="preprocessData"
   >
     <template #addDialogForm="{ formRef, form, rules}">
       <el-form :ref="formRef" :model="form" :rules="rules" label-width="120px">
@@ -33,13 +34,13 @@
             <el-option v-for="item in categories" :key="item.id" :label="item.name" :value="item.id" />
           </el-select>
         </el-form-item>
-        <el-form-item label="商品库存" prop="stock">
-          <el-input-number v-model="form.stock" placeholder="请输入库存" style="width: 200px" />
+        <el-form-item label="商品规格" prop="specIds">
+          <el-select v-model="form.specIds" placeholder="请选择商品规格" multiple>
+            <el-option v-for="item in specs" :key="item.id" :label="item.name" :value="item.id" />
+          </el-select>
         </el-form-item>
       </el-form>
     </template>
-
-
 
     <template #updateDialogForm="{ formRef, form, rules}">
       <el-form :ref="formRef" :model="form" :rules="rules" label-width="120px">
@@ -68,8 +69,10 @@
             <el-option v-for="item in categories" :key="item.id" :label="item.name" :value="item.id" />
           </el-select>
         </el-form-item>
-        <el-form-item label="商品库存" prop="stock">
-          <el-input-number v-model="form.stock" placeholder="请输入库存" style="width: 200px" />
+        <el-form-item label="商品规格" prop="specIds">
+          <el-select v-model="form.specIds" placeholder="请选择商品规格" multiple>
+            <el-option v-for="item in specs" :key="item.id" :label="item.name" :value="item.id" />
+          </el-select>
         </el-form-item>
       </el-form>
     </template>
@@ -79,12 +82,14 @@
 <script setup>
 import Table from "@/components/TableComponent.vue";
 import { globalApi } from "@/api/global/index.js";
-import { onMounted, ref, h } from "vue";
+import { onMounted, ref, h} from "vue";
 import { upload } from "@/api/file.js";
 import { Plus } from "@element-plus/icons-vue";
 
 const categories = ref([]);
 const imageUrl = ref('');
+
+const specs = ref([]);
 
 const columns = [
   {
@@ -118,11 +123,6 @@ const columns = [
     prop: 'category.name',
     label: '商品分类',
     align: 'center',
-  },
-  {
-    prop: 'stock',
-    label: '商品库存',
-    align: 'center',
   }
 ]
 
@@ -145,16 +145,16 @@ const rules = {
   categoryId: [
     { required: true, message: '请选择商品分类', trigger: 'change' }
   ],
-  stock: [
-    { required: true, message: '请输入商品库存', trigger: 'blur' },
-    { type: 'number', min: 0, max: 10000, message: '请输入正确的库存', trigger: 'blur' }
-  ],
 }
 
 
 onMounted(() => {
   globalApi.categories.get(null, null, (res) => {
     categories.value = res;
+  })
+
+  globalApi.specs.get(null, null, (res) => {
+    specs.value = res;
   })
 });
 
@@ -169,6 +169,18 @@ const beforeImageUpload = async (file, form) => {
 
 const handleImageSuccess = (response, file, form) => {
   form.image = imageUrl.value;
+}
+
+const preprocessData = (data) => {
+  data.forEach(item => {
+    item.specIds = item.specIds || [];
+    if(item.specs){
+      item.specs.forEach(spec => {
+        item.specIds.push(spec.id);
+      })
+    }
+  })
+  return data
 }
 
 </script>

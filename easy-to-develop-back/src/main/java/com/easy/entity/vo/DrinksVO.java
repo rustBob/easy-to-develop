@@ -1,7 +1,9 @@
 package com.easy.entity.vo;
 
 import com.easy.entity.Categories;
+import com.easy.entity.Specs;
 import com.mybatisflex.annotation.Column;
+import com.mybatisflex.annotation.RelationManyToMany;
 import com.mybatisflex.annotation.RelationManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -60,4 +63,9 @@ public class DrinksVO {
     //===========================关联表================================
 
     private Categories category;
+
+    /**
+     * 商品规格
+     */
+    private List<Specs> specs;
 }

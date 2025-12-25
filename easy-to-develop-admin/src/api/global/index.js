@@ -21,6 +21,7 @@ export const globalApi = {
       'stores',
       'user-coupons',
       'store-goods',
+      'specs'
     ]
 
     // 动态注册 api 方法

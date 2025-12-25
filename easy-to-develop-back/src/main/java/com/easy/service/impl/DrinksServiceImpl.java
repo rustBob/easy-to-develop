@@ -2,11 +2,13 @@ package com.easy.service.impl;
 
 import com.easy.common.exception.AppException;
 import com.easy.entity.Drinks;
+import com.easy.entity.GoodSpecs;
 import com.easy.entity.StoreGood;
 import com.easy.entity.dto.DrinksDTO;
 import com.easy.entity.dto.pg.DrinksPageQueryDTO;
 import com.easy.entity.vo.DrinksVO;
 import com.easy.mapper.DrinksMapper;
+import com.easy.mapper.GoodSpecsMapper;
 import com.easy.service.DrinksService;
 import com.mybatisflex.core.paginate.Page;
 import com.mybatisflex.core.query.QueryWrapper;
@@ -20,6 +22,9 @@ import java.util.Map;
 @Slf4j
 @Service
 public class DrinksServiceImpl extends BaseServiceImpl<Drinks, DrinksDTO, DrinksVO, DrinksPageQueryDTO> implements DrinksService {
+
+    @Autowired
+    private GoodSpecsMapper goodSpecsMapper;
 
     @Autowired
     public DrinksServiceImpl(DrinksMapper mapper){super(mapper);}
@@ -48,5 +53,43 @@ public class DrinksServiceImpl extends BaseServiceImpl<Drinks, DrinksDTO, Drinks
         }
 
         return mapper.selectListWithRelationsByQuery(queryWrapper);
+    }
+
+    @Override
+    protected void afterPost(Drinks e, DrinksDTO drinksDTO) throws AppException {
+        if(drinksDTO.getSpecIds() != null){
+            for (String specId : drinksDTO.getSpecIds()) {
+                goodSpecsMapper.insert(GoodSpecs.builder()
+                                .goodId(e.getId())
+                                .specsId(specId)
+                                .build()
+                );
+            }
+        }
+    }
+
+    @Override
+    protected void beforeUpdate(DrinksDTO drinksDTO) throws AppException {
+        if(drinksDTO.getSpecIds() != null){
+            goodSpecsMapper.deleteByQuery(QueryWrapper.create(new GoodSpecs()).where("good_id = ?", drinksDTO.getId()));
+        }
+    }
+
+    @Override
+    protected void afterUpdate(DrinksDTO drinksDTO) throws AppException {
+        if(drinksDTO.getSpecIds() != null){
+            for (String specId : drinksDTO.getSpecIds()) {
+                goodSpecsMapper.insert(GoodSpecs.builder()
+                        .goodId(drinksDTO.getId())
+                        .specsId(specId)
+                        .build()
+                );
+            }
+        }
+    }
+
+    @Override
+    protected void afterDelete(Drinks e) throws AppException {
+        goodSpecsMapper.deleteByQuery(QueryWrapper.create(new GoodSpecs()).where("good_id = ?", e.getId()));
     }
 }

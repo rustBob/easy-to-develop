@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -66,4 +67,13 @@ public class Drinks {
     @RelationManyToOne(selfField = "categoryId",targetField = "id")
     private Categories category;
 
+    /**
+     * 商品规格
+     */
+    @RelationManyToMany(
+            joinTable = "good_specs",
+            selfField = "id", joinSelfColumn = "good_id",
+            targetField = "id", joinTargetColumn = "specs_id"
+    )
+    private List<Specs> specs;
 }
