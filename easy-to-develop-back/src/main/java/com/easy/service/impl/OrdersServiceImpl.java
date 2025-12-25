@@ -143,9 +143,9 @@ public class OrdersServiceImpl extends BaseServiceImpl<Orders,OrdersDTO, OrdersV
 
         // 5. 关联对象空值校验：User
         if (orders.getUser() != null) {
-            ordersVO.setUserName(orders.getUser().getUsername());
+            ordersVO.setUsername(orders.getUser().getUsername());
         } else {
-            ordersVO.setUserName("未知用户"); // 给默认值，避免VO字段为null
+            ordersVO.setUsername("未知用户"); // 给默认值，避免VO字段为null
             log.warn("订单{}的关联用户不存在（userId={}）", orders.getId(), orders.getUserId());
         }
 

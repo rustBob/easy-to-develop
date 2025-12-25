@@ -40,7 +40,7 @@ public class OrdersVO {
     /**
      * 用户名称
      */
-    private String userName;
+    private String username;
 
     /**
      * 商店ID
