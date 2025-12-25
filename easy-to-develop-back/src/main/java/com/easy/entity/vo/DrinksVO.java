@@ -48,11 +48,6 @@ public class DrinksVO {
     private String description;
 
     /**
-     * 商品库存
-     */
-    private Integer stock;
-
-    /**
      * 创建时间
      */
     private LocalDateTime createTime;

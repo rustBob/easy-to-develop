@@ -25,9 +25,4 @@ public class DrinksPageQueryDTO {
      */
     private String categoryId;
 
-    /**
-     * 商品库存
-     */
-    private Integer stock;
-
 }

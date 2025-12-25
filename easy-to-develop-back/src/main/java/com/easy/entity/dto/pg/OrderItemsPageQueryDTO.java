@@ -15,6 +15,11 @@ public class OrderItemsPageQueryDTO {
     private Integer pageSize;
 
     /**
+     * 所属订单
+     */
+    private String orderId;
+
+    /**
      * 饮品ID
      */
     private String drinkId;

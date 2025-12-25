@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -20,7 +21,7 @@ public class Orders {
     /**
      * id
      */
-    @Id(keyType = KeyType.Generator, value = KeyGenerators.snowFlakeId)
+    @Id
     private String id;
 
     /**
@@ -38,10 +39,6 @@ public class Orders {
      */
     private String storeId;
 
-    /**
-     * 订单具体商品ID
-     */
-    private String orderItemsId;
 
     /**
      * 优惠券ID
@@ -117,8 +114,8 @@ public class Orders {
     @RelationManyToOne(selfField = "storeId", targetField = "id")
     private Store store;
 
-    @RelationOneToMany(selfField = "orderItemId", targetField = "id")
-    private OrderItems orderItems;
+    @RelationOneToMany(selfField = "id", targetField = "orderId")
+    private List<OrderItems>  orderItems;
 
     @RelationOneToOne(selfField = "couponId",targetField = "id")
     private UserCoupon coupon;

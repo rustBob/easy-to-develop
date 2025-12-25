@@ -60,7 +60,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, UserDTO, UserVO, User
         // 加密
         // 1.获取密钥
         String id = snowflakeDistributeIdUtil.nextId().toString();
-        userDTO.setId(Long.valueOf(id));
+        userDTO.setId(id);
 
         byte[] salt = AESKeyGenerator.generateSaltByLong(Long.parseLong(id));
         String privateKey;

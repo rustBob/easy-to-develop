@@ -123,7 +123,7 @@ public class AuthServiceImpl implements AuthService {
         if(userDTO.getPhone() != null && !userDTO.getPhone().isEmpty()){
             userDTO.setUsername("用户" + userDTO.getPhone());
         }
-        userDTO.setRoleId(1L);
+        userDTO.setRoleId("1");
         userService.post(userDTO);
     }
 }

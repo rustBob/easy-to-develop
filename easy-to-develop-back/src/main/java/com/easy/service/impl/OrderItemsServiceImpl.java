@@ -35,7 +35,7 @@ public class OrderItemsServiceImpl extends BaseServiceImpl<OrderItems, OrderItem
 
     @Override
     protected void beforePost(OrderItemsDTO orderItemsDTO) throws AppException {
-        Long drinkId = orderItemsDTO.getDrinkId();
+        String drinkId = orderItemsDTO.getDrinkId();
 
         Drinks drink = drinksService.getOne(QueryWrapper.create().eq(Drinks::getId,drinkId));
         if (drink == null) {
@@ -44,14 +44,14 @@ public class OrderItemsServiceImpl extends BaseServiceImpl<OrderItems, OrderItem
         }
 
         if(orderItemsDTO.getIfAdd()==1) {
-            Long addInsId = orderItemsDTO.getAddInsId();
+            String addInsId = orderItemsDTO.getAddInsId();
             AddIns addIns = addInsService.getOne(QueryWrapper.create().eq(AddIns::getId,addInsId));
             if (addIns == null) {
                 log.error("未查询到对应小料");
                 throw new AppException(Status.PRODUCT_NOT_FOUND);
             }
         }else {
-            orderItemsDTO.setAddInsId(0L);
+            orderItemsDTO.setAddInsId("0");
             orderItemsDTO.setAddInsQuantity(0);
         }
     }

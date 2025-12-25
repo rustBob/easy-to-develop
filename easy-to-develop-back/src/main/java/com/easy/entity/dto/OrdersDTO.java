@@ -35,7 +35,7 @@ public class OrdersDTO {
     /**
      * 用户地址
      */
-    private Long locationId;
+    private String locationId;
 
     /**
      * 优惠券ID

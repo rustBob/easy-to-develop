@@ -22,7 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @GlobalRestController
 @RequestMapping("/orders")
-public class OrdersController{
+public class OrdersController extends BaseController<Orders, OrdersDTO, OrdersVO,OrdersPageQueryDTO> {
+
+    @Autowired
+    public OrdersController(OrdersServiceImpl ordersService) {super("globalOrdersController", ordersService);}
+
     @Resource
     private OrdersService ordersService;
 

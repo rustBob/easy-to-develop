@@ -57,10 +57,6 @@ public class OrdersVO {
      */
     private String storeAddress;
 
-    /**
-     * 订单具体商品
-     */
-    private OrderItems orderItems;
 
     /**
      * 优惠券ID

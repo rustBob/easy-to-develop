@@ -42,9 +42,4 @@ public class DrinksDTO {
      * 描述
      */
     private String description;
-
-    /**
-     * 商品库存
-     */
-    private Integer stock;
 }
