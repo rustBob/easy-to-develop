@@ -12,13 +12,13 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6" :class="showAdminStats ? 'lg:grid-cols-4' : 'lg:grid-cols-2'">
-      <StatCard title="总收入" value="$54,230" :trend="12.5" :icon="Money" color="bg-primary" />
-      <StatCard title="总订单" value="12,345" :trend="2.4" :icon="ShoppingCart" color="bg-success" />
-      <StatCard title="总用户" value="5,465" :trend="1.6" :icon="User" color="bg-info" v-if="showAdminStats" />
-      <StatCard title="活跃用户" value="2,430" :trend="8.2" :icon="User" color="bg-warning" v-if="showAdminStats" />
+      <StatCard title="总收入" :value="'¥' + stats.totalIncome" :trend="12.5" :icon="Money" color="bg-primary" />
+      <StatCard title="总订单" :value="stats.orderCount" :trend="2.4" :icon="ShoppingCart" color="bg-success" />
+      <StatCard title="总用户" :value="stats.userCount" :trend="1.6" :icon="User" color="bg-info" v-if="showAdminStats" />
+      <StatCard title="活跃用户" :value="stats.activeUserCount" :trend="8.2" :icon="User" color="bg-warning" v-if="showAdminStats" />
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 gap-6" :class="showAdminStats ? 'lg:grid-cols-2' : 'lg:grid-cols-1'">
       <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
         <h3 class="text-lg font-bold text-gray-900 mb-6">收入分析</h3>
         <div class="h-80">
@@ -46,6 +46,8 @@ import { BarChart, LineChart } from 'echarts/charts';
 import { TitleComponent, TooltipComponent, GridComponent } from 'echarts/components';
 import VChart from 'vue-echarts';
 import { checkRole } from '@/util/perssion';
+import { adminApi } from '@/api/admin';
+import Store from '@/store';
 
 use([
   CanvasRenderer,
@@ -56,7 +58,7 @@ use([
   GridComponent,
 ]);
 
-const lineChartOption = {
+const lineChartOption = ref({
   grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
   xAxis: {
     type: 'category',
@@ -81,9 +83,9 @@ const lineChartOption = {
       itemStyle: { color: '#409EFF', borderColor: '#fff', borderWidth: 2 },
     },
   ],
-};
+});
 
-const barChartOption = {
+const barChartOption = ref({
   grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
   xAxis: {
     type: 'category',
@@ -107,11 +109,57 @@ const barChartOption = {
       },
     },
   ],
-};
+});
 
 const showAdminStats = ref(false);
+const stats = ref({
+  totalIncome: 0,
+  orderCount: 0,
+  userCount: 0,
+  activeUserCount: 0,
+});
 
 onMounted(async () => {
-  showAdminStats.value = await checkRole('admin');
+  showAdminStats.value = await checkRole('super-admin');
+
+  let params = {};
+
+  if(Store.get('store')) params.storeId = Store.get('store').id;
+
+  await adminApi['stats'].get(params, (res) => {
+    // 绑定基础统计数据
+    const totalIncome = res.find(item => item.name === 'totalIncome');
+    const orderCount = res.find(item => item.name === 'orderCount');
+    const userCount = res.find(item => item.name === 'userCount');
+    const activeUserCount = res.find(item => item.name === 'activeUserCount');
+
+    if (totalIncome && totalIncome.value) stats.value.totalIncome = totalIncome.value[0];
+    if (orderCount && orderCount.value) stats.value.orderCount = orderCount.value[0];
+    if (userCount && userCount.value) stats.value.userCount = userCount.value[0];
+    if (activeUserCount && activeUserCount.value) stats.value.activeUserCount = activeUserCount.value[0];
+
+    // 生成最近12个月的月份标签
+    const months = [];
+    const date = new Date();
+    for (let i = 11; i >= 0; i--) {
+      const d = new Date(date.getFullYear(), date.getMonth() - i, 1);
+      const month = d.getMonth() + 1;
+      const year = d.getFullYear();
+      months.push(`${year}-${month < 10 ? '0' + month : month}`);
+    }
+    lineChartOption.value.xAxis.data = months;
+    barChartOption.value.xAxis.data = months;
+
+    // 更新数据
+    const monthIncomeData = res.find(item => item.name === 'monthIncome');
+    if (monthIncomeData && Array.isArray(monthIncomeData.value)) {
+       lineChartOption.value.series[0].data = monthIncomeData.value;
+    }
+
+    const monthOrderCountData = res.find(item => item.name === 'monthOrderCount');
+    if (monthOrderCountData && Array.isArray(monthOrderCountData.value)) {
+       barChartOption.value.series[0].data = monthOrderCountData.value;
+    }
+  });
 });
 </script>

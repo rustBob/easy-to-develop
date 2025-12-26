@@ -75,9 +75,9 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
                     .check(StpUtil::checkLogin);
 
             // 权限校验
-            SaRouter.match(adminPrefix + "/**")
-                    .notMatch(adminPrefix + "/menus/**")
-                    .check(r -> StpUtil.checkRoleOr(RoleKeyConst.ADMIN));
+//            SaRouter.match(adminPrefix + "/**")
+//                    .notMatch(adminPrefix + "/menus/**")
+//                    .check(r -> StpUtil.checkRoleOr(RoleKeyConst.ADMIN));
         }).isAnnotation(false) // 关闭注解鉴权功能
         ).addPathPatterns("/**");
     }

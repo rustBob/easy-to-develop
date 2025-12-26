@@ -51,7 +51,6 @@ export const globalApi = {
         return handleRequest(ApiClient.post(url, callbackData), success, failure);
       },
     }
-
     return apis;
 
   })()
