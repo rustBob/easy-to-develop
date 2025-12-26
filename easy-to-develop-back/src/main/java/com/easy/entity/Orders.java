@@ -69,7 +69,7 @@ public class Orders {
     /**
      * 预计制作时间
      */
-    private Integer estimatedTime;
+    private String estimatedTime;
 
     /**
      * 总费用

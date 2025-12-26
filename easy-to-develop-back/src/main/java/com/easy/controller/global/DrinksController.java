@@ -12,12 +12,19 @@ import com.easy.service.impl.DrinksServiceImpl;
 import com.mybatisflex.core.paginate.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Slf4j
 @GlobalRestController
 @RequestMapping("/drinks")
 public class DrinksController extends BaseController<Drinks,DrinksDTO,DrinksVO,DrinksPageQueryDTO> {
+
+    @Autowired
+    private DrinksServiceImpl service;
+
     @Autowired
     public DrinksController(DrinksServiceImpl service){ super("GlobalDrinksController", service); }
 }

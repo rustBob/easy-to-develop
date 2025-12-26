@@ -23,8 +23,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
+
+import static java.time.LocalTime.now;
 
 @Slf4j
 @Service
@@ -63,11 +67,12 @@ public class OrdersServiceImpl extends BaseServiceImpl<Orders,OrdersDTO, OrdersV
 
         for (OrderItemsDTO orderItemsDTO : orderItems) {
             orderItemsDTO.setOrderId(orderId);
+            orderItemsDTO.setId(String.valueOf(snowflakeDistributeIdUtil.nextId()));
             orderItemsService.post(orderItemsDTO);
         }
-        if(!ordersDTO.getCouponId().equals("0")){
-            userCouponService.delete(Long.valueOf(ordersDTO.getCouponId()));
-        }
+//        if(!ordersDTO.getCouponId().equals("0")){
+//            userCouponService.delete(Long.valueOf(ordersDTO.getCouponId()));
+//        }
 
         UserDTO userDTO = UserDTO.builder()
                 .id(user.getId())
@@ -78,7 +83,7 @@ public class OrdersServiceImpl extends BaseServiceImpl<Orders,OrdersDTO, OrdersV
                 .phone(user.getPhone())
                 .birthday(user.getBirthday())
                 .memberCardID(user.getMemberCardId())
-                .totalPoints(user.getTotalPoints()-ordersDTO.getPointsConsumption()+ordersDTO.getFinalAmount().intValue()/10)
+                .totalPoints(user.getTotalPoints() - ordersDTO.getPointsConsumption() + ordersDTO.getFinalAmount().intValue())
                 .balance(user.getBalance().subtract(ordersDTO.getFinalAmount()))
                 .enabled(user.getEnabled())
                 .deleted(user.getDeleted())
@@ -99,7 +104,7 @@ public class OrdersServiceImpl extends BaseServiceImpl<Orders,OrdersDTO, OrdersV
                 .finalAmount(ordersDTO.getFinalAmount())
                 .levelDiscountAmount(ordersDTO.getLevelDiscountAmount())
                 .remarks(ordersDTO.getRemarks())
-                .estimatedTime(900)
+                .estimatedTime(String.valueOf(System.currentTimeMillis() + 30 * 60 * 1000))
                 .pickupCode(random.nextInt(9000)+1000)
                 .levelDiscountAmount(new BigDecimal(0))
                 .pointsConsumption(ordersDTO.getPointsConsumption())
@@ -159,7 +164,10 @@ public class OrdersServiceImpl extends BaseServiceImpl<Orders,OrdersDTO, OrdersV
         }
 
         if (orders.getLocations() != null) {
-            ordersVO.setAddress(orders.getLocations().getPosition()+"\n"+orders.getLocations().getDetail());
+            ordersVO.setAddress(orders.getLocations().getPosition());
+            ordersVO.setDetail(orders.getLocations().getDetail());
+            ordersVO.setName(orders.getLocations().getName());
+            ordersVO.setPhone(orders.getLocations().getPhone());
         } else {
             ordersVO.setAddress("该订单为自提");
             log.warn("订单{}的关联商店不存在（storeId={}）", orders.getId(), orders.getStoreId());

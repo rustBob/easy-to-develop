@@ -22,7 +22,12 @@ public class OrdersDTO {
     private String id;
 
     /**
-     * 订单状态(1：制作中，2：制作完成，3：外送中/等待取餐中，4：订单完成，0：订单取消)
+     * 用户id
+     */
+    private String userId;
+
+    /**
+     * 订单状态(1：待接单，2：制作中，3：制作完成，4：外送中/等待取餐中，5：订单完成，0：订单取消)
      */
     private Integer status;
 
@@ -50,7 +55,6 @@ public class OrdersDTO {
      * 优惠券ID
      */
     private String couponId;
-
 
     /**
      * 总费用

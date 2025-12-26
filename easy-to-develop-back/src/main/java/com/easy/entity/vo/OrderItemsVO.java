@@ -20,6 +20,11 @@ public class OrderItemsVO {
     private String id;
 
     /**
+     * 用户ID
+     */
+    private String userId;
+
+    /**
      * 所属订单
      */
     private String orderId;

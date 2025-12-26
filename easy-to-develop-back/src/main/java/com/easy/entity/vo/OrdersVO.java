@@ -58,6 +58,20 @@ public class OrdersVO {
      */
     private String address;
 
+    /**
+     * 外送地址详情
+     */
+    private String detail;
+
+    /**
+     * 外送电话
+     */
+    private String phone;
+
+    /**
+     * 外送联系人
+     */
+    private String name;
 
     /**
      * 优惠券ID
@@ -82,7 +96,7 @@ public class OrdersVO {
     /**
      * 预计制作时间
      */
-    private Integer estimatedTime;
+    private String estimatedTime;
 
     /**
      * 总费用
