@@ -1,6 +1,6 @@
 <template>
   <Table
-    :data-driver="globalApi['specs']"
+    :data-driver="specsDriver"
     :columns="columns"
     :data-pk-names="['id']"
     :add-rules="rules"
@@ -34,6 +34,26 @@
 import Table from "@/components/TableComponent.vue";
 import { globalApi } from "@/api/global/index.js";
 
+const specsDriver = {
+  ...globalApi['specs'],
+  add: (pathParams, data, success, failure) => {
+    const payload = { ...data };
+    // 提交前将数组转换为 JSON 字符串
+    if (Array.isArray(payload.option)) {
+      payload.option = JSON.stringify(payload.option);
+    }
+    globalApi['specs'].add(pathParams, payload, success, failure);
+  },
+  update: (pathParams, data, success, failure) => {
+    const payload = { ...data };
+    // 提交前将数组转换为 JSON 字符串
+    if (Array.isArray(payload.option)) {
+      payload.option = JSON.stringify(payload.option);
+    }
+    globalApi['specs'].update(pathParams, payload, success, failure);
+  }
+}
+
 const columns = [
   { prop: 'name', label: '名称', align: 'center' },
   { prop: 'option', label: '值', align: 'center' },
@@ -44,7 +64,7 @@ const rules = {
     { required: true, message: '请输入规格名称', trigger: ['blur'] }
   ],
   option: [
-    { required: true, message: '请输入规格值', trigger: ['blur'] }
+    { required: true, message: '请输入规格值', trigger: ['change'] }
   ]
 }
 </script>

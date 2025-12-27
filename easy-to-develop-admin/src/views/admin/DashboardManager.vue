@@ -12,10 +12,10 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6" :class="showAdminStats ? 'lg:grid-cols-4' : 'lg:grid-cols-2'">
-      <StatCard title="总收入" :value="'¥' + stats.totalIncome" :trend="12.5" :icon="Money" color="bg-primary" />
-      <StatCard title="总订单" :value="stats.orderCount" :trend="2.4" :icon="ShoppingCart" color="bg-success" />
-      <StatCard title="总用户" :value="stats.userCount" :trend="1.6" :icon="User" color="bg-info" v-if="showAdminStats" />
-      <StatCard title="活跃用户" :value="stats.activeUserCount" :trend="8.2" :icon="User" color="bg-warning" v-if="showAdminStats" />
+      <StatCard title="总收入" :value="'¥' + stats.totalIncome" :trend="100" :icon="Money" color="bg-primary" />
+      <StatCard title="总订单" :value="stats.orderCount" :trend="100" :icon="ShoppingCart" color="bg-success" />
+      <StatCard title="总用户" :value="stats.userCount" :trend="100" :icon="User" color="bg-info" v-if="showAdminStats" />
+      <StatCard title="活跃用户" :value="stats.activeUserCount" :trend="100" :icon="User" color="bg-warning" v-if="showAdminStats" />
     </div>
 
     <div class="grid grid-cols-1 gap-6" :class="showAdminStats ? 'lg:grid-cols-2' : 'lg:grid-cols-1'">

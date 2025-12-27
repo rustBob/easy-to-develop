@@ -20,7 +20,8 @@ export const globalApi = {
       'stores',
       'user-coupons',
       'store-goods',
-      'specs'
+      'specs',
+      'after-sales',
     ]
 
     // 动态注册 api 方法
