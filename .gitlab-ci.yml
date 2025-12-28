@@ -27,7 +27,15 @@ build_images:
   stage: build
   services:
     - name: docker:dind
-      command: ["--registry-mirror=https://dockerproxy.com"]
+      entrypoint: ["sh", "-c"]
+      command:
+        - |
+          printf "nameserver 223.5.5.5\nnameserver 223.6.6.6\nnameserver 114.114.114.114\n" > /etc/resolv.conf
+          exec dockerd-entrypoint.sh \
+            --registry-mirror=https://docker.1ms.run \
+            --registry-mirror=https://docker.mirrors.sjtug.sjtu.edu.cn \
+            --registry-mirror=https://mirror.baidubce.com \
+            --registry-mirror=https://mirror.aliyuncs.com
   before_script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
   script:
