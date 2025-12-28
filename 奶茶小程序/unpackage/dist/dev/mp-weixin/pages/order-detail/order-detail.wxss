@@ -1,0 +1,248 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.container.data-v-71729483 {
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.status-header.data-v-71729483 {
+  padding: 40rpx 0;
+  text-align: center;
+  border-bottom: 20rpx solid #f8f8f8;
+  background: #fff;
+  margin: -30rpx -30rpx 30rpx -30rpx;
+}
+.status-header.pickup.data-v-71729483 {
+  background: linear-gradient(to bottom, #f6ffed, #fff);
+}
+.status-header.delivery.data-v-71729483 {
+  background: linear-gradient(to bottom, #e6f7ff, #fff);
+}
+.status-header .status-text.data-v-71729483 {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+.status-header .status-desc.data-v-71729483 {
+  font-size: 24rpx;
+  color: #666;
+}
+.pickup-code-box.data-v-71729483 {
+  margin-top: 30rpx;
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 16rpx;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  min-width: 300rpx;
+}
+.pickup-code-box .label.data-v-71729483 {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+.pickup-code-box .code.data-v-71729483 {
+  font-size: 60rpx;
+  font-weight: bold;
+  color: #333;
+  font-family: monospace;
+  letter-spacing: 4rpx;
+  margin-bottom: 10rpx;
+}
+.pickup-code-box .counter.data-v-71729483 {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+.pickup-code-box .action-btn.data-v-71729483 {
+  background: #52c41a;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 40rpx;
+  padding: 0 40rpx;
+  line-height: 60rpx;
+}
+.delivery-status-box.data-v-71729483 {
+  margin-top: 30rpx;
+  width: 600rpx;
+  margin-left: auto;
+  margin-right: auto;
+}
+.delivery-status-box .time-box.data-v-71729483 {
+  margin-bottom: 30rpx;
+}
+.delivery-status-box .time-box .label.data-v-71729483 {
+  font-size: 24rpx;
+  color: #999;
+  display: block;
+  margin-bottom: 8rpx;
+}
+.delivery-status-box .time-box .time.data-v-71729483 {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #1890ff;
+}
+.delivery-status-box .rider-box.data-v-71729483 {
+  background: #fff;
+  padding: 20rpx 30rpx;
+  border-radius: 50rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  border: 1px solid #e6f7ff;
+}
+.delivery-status-box .rider-box .rider-info.data-v-71729483 {
+  display: flex;
+  align-items: center;
+}
+.delivery-status-box .rider-box .rider-info .name.data-v-71729483 {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-right: 12rpx;
+}
+.delivery-status-box .rider-box .rider-info .tag.data-v-71729483 {
+  font-size: 20rpx;
+  color: #1890ff;
+  background: #e6f7ff;
+  padding: 2rpx 8rpx;
+  border-radius: 4rpx;
+}
+.delivery-status-box .rider-box .contact-btn.data-v-71729483 {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #333;
+}
+.delivery-status-box .rider-box .contact-btn .icon.data-v-71729483 {
+  margin-right: 8rpx;
+}
+.card.data-v-71729483 {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+}
+.shop-name.data-v-71729483 {
+  font-size: 28rpx;
+  color: #666;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #f5f5f5;
+  margin-bottom: 20rpx;
+}
+.product-item.data-v-71729483 {
+  display: flex;
+  margin-bottom: 30rpx;
+}
+.product-item .prod-img.data-v-71729483 {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 8rpx;
+  background: #f5f5f5;
+  margin-right: 20rpx;
+}
+.product-item .prod-info.data-v-71729483 {
+  flex: 1;
+}
+.product-item .prod-info .name-row.data-v-71729483 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8rpx;
+}
+.product-item .prod-info .name-row .name.data-v-71729483 {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+.product-item .prod-info .name-row .price.data-v-71729483 {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.product-item .prod-info .specs-row.data-v-71729483 {
+  display: flex;
+  justify-content: space-between;
+  color: #999;
+  font-size: 24rpx;
+}
+.price-details.data-v-71729483 {
+  border-top: 1px dashed #f5f5f5;
+  padding-top: 20rpx;
+}
+.price-details .row.data-v-71729483 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+.price-details .row .highlight.data-v-71729483 {
+  color: #ff6600;
+}
+.price-details .row.total-row.data-v-71729483 {
+  margin-top: 20rpx;
+  align-items: center;
+}
+.price-details .row.total-row .label.data-v-71729483 {
+  font-size: 28rpx;
+  color: #333;
+}
+.price-details .row.total-row .total-price.data-v-71729483 {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+.info-row.data-v-71729483 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+  font-size: 26rpx;
+}
+.info-row .label.data-v-71729483 {
+  color: #999;
+}
+.info-row .value.data-v-71729483 {
+  color: #333;
+}
+.info-row .value-col.data-v-71729483 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  max-width: 70%;
+}
+.info-row .value-col .sub-info.data-v-71729483 {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+.info-row.data-v-71729483:last-child {
+  margin-bottom: 0;
+}

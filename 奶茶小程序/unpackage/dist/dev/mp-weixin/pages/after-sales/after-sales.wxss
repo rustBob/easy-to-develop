@@ -1,0 +1,185 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.container.data-v-47c44558 {
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.status-bar.data-v-47c44558 {
+  background: #e6f7ff;
+  border: 1px solid #91d5ff;
+  padding: 20rpx;
+  border-radius: 12rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.status-bar .status-text.data-v-47c44558 {
+  color: #1890ff;
+  font-weight: bold;
+}
+.status-bar .status-desc.data-v-47c44558 {
+  font-size: 24rpx;
+  color: #666;
+}
+.order-info.data-v-47c44558 {
+  background: #fff;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  margin-bottom: 30rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+.order-info .value.data-v-47c44558 {
+  color: #333;
+  font-weight: bold;
+  margin-left: 10rpx;
+}
+.section-title.data-v-47c44558 {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+.type-select.data-v-47c44558 {
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 12rpx;
+  margin-bottom: 30rpx;
+}
+.type-select.disabled.data-v-47c44558 {
+  opacity: 0.7;
+  pointer-events: none;
+}
+.type-select .options.data-v-47c44558 {
+  display: flex;
+  gap: 30rpx;
+}
+.type-select .options .option.data-v-47c44558 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx;
+  border: 2px solid #eee;
+  border-radius: 12rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+.type-select .options .option .icon.data-v-47c44558 {
+  font-size: 48rpx;
+  margin-bottom: 10rpx;
+}
+.type-select .options .option.active.data-v-47c44558 {
+  border-color: #ff6600;
+  color: #ff6600;
+  background: #fff5e6;
+}
+.form-content.data-v-47c44558 {
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 12rpx;
+  margin-bottom: 60rpx;
+}
+.form-content .textarea.data-v-47c44558 {
+  width: 100%;
+  height: 200rpx;
+  background: #f9f9f9;
+  padding: 20rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+.form-content .word-count.data-v-47c44558 {
+  display: block;
+  text-align: right;
+  font-size: 24rpx;
+  color: #999;
+  margin: 10rpx 0 30rpx;
+}
+.form-content .upload-box.data-v-47c44558 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+.form-content .upload-box .upload-btn.data-v-47c44558 {
+  width: 160rpx;
+  height: 160rpx;
+  background: #f9f9f9;
+  border: 1px dashed #ddd;
+  border-radius: 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+}
+.form-content .upload-box .upload-btn .plus.data-v-47c44558 {
+  font-size: 60rpx;
+  line-height: 1;
+  margin-bottom: 10rpx;
+}
+.form-content .upload-box .upload-btn .text.data-v-47c44558 {
+  font-size: 24rpx;
+}
+.form-content .upload-box .img-preview.data-v-47c44558 {
+  width: 160rpx;
+  height: 160rpx;
+  position: relative;
+}
+.form-content .upload-box .img-preview .img.data-v-47c44558 {
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+}
+.form-content .upload-box .img-preview .del.data-v-47c44558 {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  width: 36rpx;
+  height: 36rpx;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 34rpx;
+  font-size: 24rpx;
+}
+.submit-btn.data-v-47c44558 {
+  background: #ff6600;
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.submit-btn.cancel.data-v-47c44558 {
+  background: #fff;
+  color: #666;
+  border: 1px solid #ddd;
+  margin-top: 20rpx;
+}

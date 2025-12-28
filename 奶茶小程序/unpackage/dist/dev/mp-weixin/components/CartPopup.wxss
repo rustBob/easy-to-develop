@@ -1,0 +1,222 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.cart-mask.data-v-6a6a0634 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.cart-content.data-v-6a6a0634 {
+  background-color: #fff;
+  border-top-left-radius: 24rpx;
+  border-top-right-radius: 24rpx;
+  padding: 30rpx;
+  padding-bottom: calc(60rpx + env(safe-area-inset-bottom));
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+.cart-header.data-v-6a6a0634 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #eee;
+}
+.cart-header .title.data-v-6a6a0634 {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.cart-header .clear-btn.data-v-6a6a0634 {
+  font-size: 24rpx;
+  color: #999;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+.cart-list.data-v-6a6a0634 {
+  flex: 1;
+  max-height: 500rpx;
+  margin-bottom: 20rpx;
+}
+.cart-item.data-v-6a6a0634 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+}
+.cart-item .item-info.data-v-6a6a0634 {
+  flex: 1;
+}
+.cart-item .item-info .name.data-v-6a6a0634 {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+}
+.cart-item .item-info .specs.data-v-6a6a0634 {
+  font-size: 22rpx;
+  color: #999;
+}
+.cart-item .item-action.data-v-6a6a0634 {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+.cart-item .item-action .price.data-v-6a6a0634 {
+  font-weight: bold;
+  font-size: 30rpx;
+}
+.stepper.data-v-6a6a0634 {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8rpx;
+}
+.stepper .step-btn.data-v-6a6a0634 {
+  width: 50rpx;
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+.stepper .qty.data-v-6a6a0634 {
+  width: 40rpx;
+  text-align: center;
+  font-size: 24rpx;
+}
+.cart-footer-info.data-v-6a6a0634 {
+  background: #fff5e6;
+  padding: 20rpx;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  font-size: 24rpx;
+}
+.cart-footer-info .discount-row.data-v-6a6a0634, .cart-footer-info .points-row.data-v-6a6a0634 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+  color: #666;
+}
+.cart-footer-info .amount.data-v-6a6a0634 {
+  color: #ff6600;
+  font-weight: bold;
+}
+.cart-footer-info .checkbox-label.data-v-6a6a0634 {
+  display: flex;
+  align-items: center;
+}
+.coupon-scroll.data-v-6a6a0634 {
+  white-space: nowrap;
+  margin-bottom: 20rpx;
+}
+.coupon-scroll .coupon-tag.data-v-6a6a0634 {
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  background: #f5f5f5;
+  border: 1px solid #eee;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+.coupon-scroll .coupon-tag.active.data-v-6a6a0634 {
+  background: #fff5e6;
+  border-color: #ff6600;
+  color: #ff6600;
+}
+.coupon-scroll .coupon-tag.disabled.data-v-6a6a0634 {
+  opacity: 0.5;
+  background: #eee;
+}
+.coupon-scroll .coupon-tag .tip.data-v-6a6a0634 {
+  font-size: 20rpx;
+  color: #ff4d4f;
+  margin-left: 8rpx;
+}
+.remarks-section.data-v-6a6a0634 {
+  margin-bottom: 30rpx;
+  background: #f9f9f9;
+  padding: 20rpx;
+  border-radius: 12rpx;
+}
+.remarks-section .section-header.data-v-6a6a0634 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+}
+.remarks-section .section-header .title.data-v-6a6a0634 {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+}
+.remarks-section .section-header .count.data-v-6a6a0634 {
+  font-size: 22rpx;
+  color: #999;
+}
+.remarks-section .remarks-input.data-v-6a6a0634 {
+  width: 100%;
+  height: 120rpx;
+  font-size: 26rpx;
+  color: #333;
+  line-height: 1.4;
+}
+.checkout-bar.data-v-6a6a0634 {
+  background: #ff6600;
+  color: #fff;
+  padding: 24rpx 40rpx;
+  border-radius: 50rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(255, 102, 0, 0.3);
+}
+.checkout-bar .total .symbol.data-v-6a6a0634 {
+  font-size: 24rpx;
+}
+.checkout-bar .total .num.data-v-6a6a0634 {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.checkout-bar .pay-btn.data-v-6a6a0634 {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+.checkout-bar .pay-btn .arrow.data-v-6a6a0634 {
+  margin-left: 10rpx;
+  width: 24rpx;
+  height: 24rpx;
+}

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "点单",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "product-detail": "../../components/ProductDetail",
+    "cart-popup": "../../components/CartPopup",
+    "store-modal": "../../components/StoreModal",
+    "search-overlay": "../../components/SearchOverlay"
+  }
+}

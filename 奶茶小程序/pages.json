@@ -1,0 +1,104 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "云顶奶茶",
+                "navigationStyle": "custom"
+			}
+		},
+        {
+            "path": "pages/menu/menu",
+            "style": {
+                "navigationBarTitleText": "点单",
+                "navigationStyle": "custom"
+            }
+        },
+        {
+            "path": "pages/orders/orders",
+            "style": {
+                "navigationBarTitleText": "订单",
+                "navigationStyle": "custom"
+            }
+        },
+        {
+            "path": "pages/profile/profile",
+            "style": {
+                "navigationBarTitleText": "我的",
+                "navigationStyle": "custom"
+            }
+        },
+        {
+            "path": "pages/order-detail/order-detail",
+            "style": {
+                "navigationBarTitleText": "订单详情"
+            }
+        },
+        {
+            "path": "pages/coupons/coupons",
+            "style": {
+                "navigationBarTitleText": "我的优惠券"
+            }
+        },
+        {
+            "path": "pages/recharge/recharge",
+            "style": {
+                "navigationBarTitleText": "余额充值"
+            }
+        },
+        {
+            "path": "pages/login/login",
+            "style": {
+                "navigationBarTitleText": "登录"
+            }
+        },
+        {
+            "path": "pages/profile-edit/profile-edit",
+            "style": {
+                "navigationBarTitleText": "用户信息编辑"
+            }
+        },
+        {
+            "path": "pages/address/address",
+            "style": {
+                "navigationBarTitleText": "地址管理"
+            }
+        },
+        {
+            "path": "pages/after-sales/after-sales",
+            "style": {
+                "navigationBarTitleText": "申请售后"
+            }
+        }
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "云顶奶茶",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#f8f8f8"
+	},
+    "tabBar": {
+        "color": "#999999",
+        "selectedColor": "#ff6600",
+        "backgroundColor": "#ffffff",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/menu/menu",
+                "text": "点单"
+            },
+            {
+                "pagePath": "pages/orders/orders",
+                "text": "订单"
+            },
+            {
+                "pagePath": "pages/profile/profile",
+                "text": "我的"
+            }
+        ]
+    }
+}

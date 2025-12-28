@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "云顶奶茶",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "product-detail": "../../components/ProductDetail"
+  }
+}
