@@ -4,11 +4,14 @@ stages:
   - deploy
 
 variables:
-  DOCKER_HOST: tcp://docker:2375
   DOCKER_DRIVER: overlay2
   DOCKER_TLS_CERTDIR: ""
-  BACKEND_IMAGE: $CI_REGISTRY_IMAGE/milkytea-backend
-  FRONTEND_IMAGE: $CI_REGISTRY_IMAGE/milkytea-frontend
+  # 请在 GitLab CI/CD 设置中配置这些变量
+  # DOCKER_REGISTRY_USER
+  # DOCKER_REGISTRY_PASSWORD
+  # DOCKER_REGISTRY_URL
+  BACKEND_IMAGE: $DOCKER_REGISTRY_URL/milkytea-backend
+  FRONTEND_IMAGE: $DOCKER_REGISTRY_URL/milkytea-frontend
 
 # 后端单元测试
 test_backend:
@@ -26,19 +29,20 @@ build_images:
   image: docker:latest
   stage: build
   services:
-    - name: docker:dind
-      command:
-        - "--registry-mirror=https://mirror.aliyuncs.com"
-        - "--dns=223.5.5.5"
-        - "--dns=114.114.114.114"
+    - docker:dind
   before_script:
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD
   script:
+    # 后端
     - cd easy-to-develop-back
+    - mvn clean package -DskipTests # 注意：这里需要在 docker 镜像中包含 maven，或者分阶段传递 artifacts
+    # 为了简化，通常使用多阶段 Dockerfile 直接构建，或者先用 maven 镜像构建 jar
+    # 这里演示使用 Dockerfile (包含多阶段构建) 直接构建
     - docker build -t $BACKEND_IMAGE:$CI_COMMIT_SHA -t $BACKEND_IMAGE:latest .
     - docker push $BACKEND_IMAGE:$CI_COMMIT_SHA
     - docker push $BACKEND_IMAGE:latest
     
+    # 前端
     - cd ../easy-to-develop-admin
     - docker build -t $FRONTEND_IMAGE:$CI_COMMIT_SHA -t $FRONTEND_IMAGE:latest .
     - docker push $FRONTEND_IMAGE:$CI_COMMIT_SHA
@@ -55,7 +59,6 @@ deploy:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
   script:
-    - echo "$CI_JOB_TOKEN" | ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST "docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY"
     - ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST "
         export BACKEND_IMAGE=$BACKEND_IMAGE:$CI_COMMIT_SHA &&
         export FRONTEND_IMAGE=$FRONTEND_IMAGE:$CI_COMMIT_SHA &&
