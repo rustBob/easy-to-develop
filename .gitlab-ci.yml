@@ -4,14 +4,17 @@ stages:
   - deploy
 
 variables:
+  DOCKER_HOST: tcp://docker:2375
   DOCKER_DRIVER: overlay2
   DOCKER_TLS_CERTDIR: ""
   # 请在 GitLab CI/CD 设置中配置这些变量
   # DOCKER_REGISTRY_USER
   # DOCKER_REGISTRY_PASSWORD
-  # DOCKER_REGISTRY_URL
-  BACKEND_IMAGE: $DOCKER_REGISTRY_URL/milkytea-backend
-  FRONTEND_IMAGE: $DOCKER_REGISTRY_URL/milkytea-frontend
+  # DOCKER_REGISTRY_SERVER（Docker Hub: docker.io；私有仓库：registry.example.com）
+  # DOCKER_REPO_PREFIX（可选：镜像仓库前缀；不填则默认使用 $DOCKER_REGISTRY_SERVER/$DOCKER_REGISTRY_USER）
+  DOCKER_REPO_PREFIX: ${DOCKER_REPO_PREFIX:-$DOCKER_REGISTRY_SERVER/$DOCKER_REGISTRY_USER}
+  BACKEND_IMAGE: $DOCKER_REPO_PREFIX/milkytea-backend
+  FRONTEND_IMAGE: $DOCKER_REPO_PREFIX/milkytea-frontend
 
 # 后端单元测试
 test_backend:
@@ -31,7 +34,7 @@ build_images:
   services:
     - docker:dind
   before_script:
-    - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URL
+    - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USER" --password-stdin "$DOCKER_REGISTRY_SERVER"
   script:
     # 后端
     - cd easy-to-develop-back
