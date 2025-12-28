@@ -49,22 +49,16 @@ build_images:
     - docker push $FRONTEND_IMAGE:$CI_COMMIT_SHA
     - docker push $FRONTEND_IMAGE:latest
 
-# 部署 (示例：通过 SSH 部署到目标服务器)
+# 部署到我的wsl服务器
 deploy:
-  image: docker:latest
   stage: deploy
-  before_script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
+  tags:
+    - wsl-shell
   script:
-    - echo "$CI_JOB_TOKEN" | ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST "docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY"
-    - ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST "
-        export BACKEND_IMAGE=$BACKEND_IMAGE:$CI_COMMIT_SHA &&
-        export FRONTEND_IMAGE=$FRONTEND_IMAGE:$CI_COMMIT_SHA &&
-        docker-compose -f docker-compose.ci.yml pull &&
-        docker-compose -f docker-compose.ci.yml up -d"
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - export BACKEND_IMAGE="$BACKEND_IMAGE:$CI_COMMIT_SHA"
+    - export FRONTEND_IMAGE="$FRONTEND_IMAGE:$CI_COMMIT_SHA"
+    - docker-compose -f docker-compose.ci.yml pull
+    - docker-compose -f docker-compose.ci.yml up -d
   only:
     - main
