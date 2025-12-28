@@ -27,7 +27,7 @@ build_images:
   stage: build
   services:
     - name: docker:dind
-      command: ["--registry-mirror=https://dockerproxy.com"]
+      command: ["--registry-mirror=https://mirror.aliyuncs.com"]
   before_script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
   script:
