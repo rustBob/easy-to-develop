@@ -4,7 +4,6 @@ stages:
   - deploy
 
 variables:
-  DOCKER_HOST: tcp://docker:2375
   DOCKER_DRIVER: overlay2
   DOCKER_TLS_CERTDIR: ""
   BACKEND_IMAGE: $CI_REGISTRY_IMAGE/milkytea-backend
@@ -25,6 +24,8 @@ test_backend:
 build_images:
   image: docker:latest
   stage: build
+  variables:
+    DOCKER_HOST: tcp://docker:2375
   services:
     - name: docker:dind
       entrypoint: ["sh", "-c"]
@@ -49,16 +50,15 @@ build_images:
     - docker push $FRONTEND_IMAGE:$CI_COMMIT_SHA
     - docker push $FRONTEND_IMAGE:latest
 
-# 部署到我的wsl服务器
+# 部署到本机 Docker Desktop（通过挂载 /var/run/docker.sock 的 Docker Runner 执行）
 deploy:
+  image: docker:latest
   stage: deploy
-  tags:
-    - wsl-shell
   script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
     - export BACKEND_IMAGE="$BACKEND_IMAGE:$CI_COMMIT_SHA"
     - export FRONTEND_IMAGE="$FRONTEND_IMAGE:$CI_COMMIT_SHA"
-    - docker-compose -f docker-compose.ci.yml pull
-    - docker-compose -f docker-compose.ci.yml up -d
+    - docker compose -f docker-compose.ci.yml pull
+    - docker compose -f docker-compose.ci.yml up -d
   only:
     - main
