@@ -11,6 +11,8 @@ variables:
 
 # 后端单元测试
 test_backend:
+  tags:
+    - homework
   image: maven:3.9.6-eclipse-temurin-21
   stage: test
   script:
@@ -22,21 +24,10 @@ test_backend:
 
 # 构建并推送镜像
 build_images:
+  tags:
+    - homework
   image: docker:latest
   stage: build
-  variables:
-    DOCKER_HOST: tcp://docker:2375
-  services:
-    - name: docker:dind
-      entrypoint: ["sh", "-c"]
-      command:
-        - |
-          printf "nameserver 223.5.5.5\nnameserver 223.6.6.6\nnameserver 114.114.114.114\n" > /etc/resolv.conf
-          exec dockerd-entrypoint.sh \
-            --registry-mirror=https://docker.1ms.run \
-            --registry-mirror=https://docker.mirrors.sjtug.sjtu.edu.cn \
-            --registry-mirror=https://mirror.baidubce.com \
-            --registry-mirror=https://mirror.aliyuncs.com
   before_script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
   script:
@@ -52,8 +43,12 @@ build_images:
 
 # 部署到本机 Docker Desktop（通过挂载 /var/run/docker.sock 的 Docker Runner 执行）
 deploy:
+  tags:
+    - homework
   image: docker:latest
   stage: deploy
+  variables:
+    DOCKER_HOST: ""
   script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
     - export BACKEND_IMAGE="$BACKEND_IMAGE:$CI_COMMIT_SHA"
