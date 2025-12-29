@@ -41,7 +41,7 @@ build_images:
     - docker push $FRONTEND_IMAGE:$CI_COMMIT_SHA
     - docker push $FRONTEND_IMAGE:latest
 
-# 部署到本机 Docker Desktop（通过挂载 /var/run/docker.sock 的 Docker Runner 执行）
+# 部署到本机 Docker（通过挂载 /var/run/docker.sock 的 Docker Runner 执行）
 deploy:
   tags:
     - homework
@@ -55,5 +55,30 @@ deploy:
     - export FRONTEND_IMAGE="$FRONTEND_IMAGE:$CI_COMMIT_SHA"
     - docker compose -f docker-compose.ci.yml pull
     - docker compose -f docker-compose.ci.yml up -d
+    - |
+      echo "Waiting for MySQL to be ready..."
+      for i in $(seq 1 90); do
+        if docker exec milkytea-mysql mysqladmin ping -h 127.0.0.1 -uroot -p"$MYSQL_ROOT_PASSWORD" --silent >/dev/null 2>&1; then
+          break
+        fi
+        sleep 2
+      done
+      if [ ! -f easy-to-develop-back/sql/init.sql ]; then
+        echo "init.sql not found in workspace: $(pwd)/easy-to-develop-back/sql/init.sql"
+        ls -la easy-to-develop-back/sql || true
+        exit 1
+      fi
+      db_exists=$(docker exec milkytea-mysql mysql -uroot -p"$MYSQL_ROOT_PASSWORD" -Nse "SELECT SCHEMA_NAME FROM information_schema.SCHEMATA WHERE SCHEMA_NAME='${MYSQL_DATABASE}';" 2>/dev/null || true)
+      if [ -z "$db_exists" ]; then
+        echo "Database ${MYSQL_DATABASE} not found, creating..."
+        docker exec milkytea-mysql mysql -uroot -p"$MYSQL_ROOT_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+      fi
+      table_count=$(docker exec milkytea-mysql mysql -uroot -p"$MYSQL_ROOT_PASSWORD" -Nse "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='${MYSQL_DATABASE}';" 2>/dev/null || echo 0)
+      if [ "${table_count:-0}" = "0" ]; then
+        echo "Initializing schema by piping init.sql into MySQL (db=${MYSQL_DATABASE})"
+        docker exec -i milkytea-mysql mysql -uroot -p"$MYSQL_ROOT_PASSWORD" "${MYSQL_DATABASE}" < easy-to-develop-back/sql/init.sql
+      else
+        echo "Schema already exists (tables=$table_count), skip init.sql"
+      fi
   only:
     - main
